@@ -1,0 +1,376 @@
+namespace = districtoverhaulai
+
+# AI event to decide which colony type
+planet_event = {
+	id = districtoverhaulai.01
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+# Energy
+		IF = {
+			limit = {
+				OR = {
+					AND = {
+						OR = {
+							need_energy = yes
+							low_energy_income = yes
+							low_energy_storage = yes
+						}
+						OR = {
+							positive_energy_modifier_low = yes
+							positive_energy_modifier_medium = yes
+						}
+					}
+					AND = {
+						positive_energy_modifier_medium = yes
+						medium_energy_income = yes
+					}
+					positive_energy_modifier_large = yes
+				}
+				NOT = {
+					OR = {
+						AND = {
+							bad_energy_economy = yes
+							any_planet_within_border = { 
+								OR = {
+									has_designation = col_generator
+									AND = {
+										has_designation = col_rural	
+										has_planet_flag = do_ai_energy
+									}
+									AND = {
+										has_designation = col_rural_gestalt
+										has_planet_flag = do_ai_energy
+									}
+								}
+								num_pops < 10
+							}
+						}
+						energy_not_needed = yes
+						negative_energy_modifier_large = yes
+						large_energy_income = yes
+					}
+				}
+			}
+			set_planet_flag = do_ai_energy
+		}
+# Food
+		IF = {
+			limit = {
+				OR = {
+					AND = {
+						OR = {
+							need_food = yes
+							low_food_income = yes
+							low_food_storage = yes
+						}
+						OR = {
+							positive_food_modifier_low = yes
+							positive_food_modifier_medium = yes
+						}
+					}
+					AND = {
+						positive_food_modifier_medium = yes
+						medium_food_income = yes
+					}
+					positive_food_modifier_large = yes
+				}
+				NOT = {
+					OR = {
+						AND = {
+							bad_food_economy = yes
+							any_planet_within_border = { 
+								OR = {
+									has_designation = col_farming
+									AND = {
+										has_designation = col_rural	
+										has_planet_flag = do_ai_food
+									}
+									AND = {
+										has_designation = col_rural_gestalt
+										has_planet_flag = do_ai_food
+									}
+								}
+								num_pops < 10
+							}
+						}
+						food_not_needed = yes
+						negative_food_modifier_large = yes
+						large_food_income = yes
+					}
+				}
+			}
+			set_planet_flag = do_ai_food
+		}
+# Minerals
+		IF = {
+			limit = {
+				OR = {
+					AND = {
+						OR = {
+							need_minerals = yes
+							low_mineral_income = yes
+							low_mineral_storage = yes
+						}
+						OR = {
+							positive_mining_modifier_low = yes
+							positive_mining_modifier_medium = yes
+						}
+					}
+					AND = {
+						positive_mining_modifier_medium = yes
+						medium_mineral_income = yes
+					}
+					positive_mining_modifier_large = yes
+				}
+				NOT = {
+					OR = {
+						AND = {
+							bad_mineral_economy = yes
+							any_planet_within_border = { 
+								OR = {
+									has_designation = col_mining
+									AND = {
+										has_designation = col_rural	
+										has_planet_flag = do_ai_minerals
+									}
+									AND = {
+										has_designation = col_rural_gestalt
+										has_planet_flag = do_ai_minerals
+									}
+								}
+								num_pops < 10
+							}
+						}
+						minerals_not_needed = yes
+						negative_mining_modifier_large = yes
+						large_mineral_income = yes
+					}
+				}
+			}
+			set_planet_flag = do_ai_minerals
+		}
+# Consumer Goods
+		IF = {
+			limit = {
+				OR = {
+					need_consumer_goods = yes
+					low_consumer_goods_storage = yes
+					low_consumer_goods_income = yes
+					bad_consumer_goods_economy = yes
+				}
+				NOT = {
+					OR = {
+						AND = {
+							bad_consumer_goods_economy = yes
+							any_planet_within_border = { 
+								OR = {
+									has_designation = col_ecu_factory
+									has_designation = col_factory
+									has_designation = col_mac_factory
+								}
+								num_pops < 10
+							}
+						}
+						consumer_goods_not_needed = yes
+						low_mineral_income = yes
+					}
+				}
+			}
+			set_planet_flag = do_ai_consumer_goods
+		}
+# Alloys
+		IF = {
+			limit = {
+				OR = {
+					need_alloys = yes
+					low_alloy_storage = yes
+					low_alloy_income = yes
+					bad_alloy_economy = yes
+				}
+				NOT = {
+					OR = {
+						AND = {
+							bad_alloy_economy = yes
+							any_planet_within_border = { 
+								OR = {
+									has_designation = col_ecu_foundry
+									has_designation = col_foundry
+									has_designation = col_mac_foundry
+									has_designation = col_hiv_foundry
+								}
+								num_pops < 20
+							}
+						}
+						low_mineral_income = yes
+						empire_has_eucomenopolis = yes
+					}
+				}
+			}
+			set_planet_flag = do_ai_alloys
+		}
+# Research
+		IF = {
+			limit = {
+				OR = {
+					has_planet_flag = do_research_complex
+					has_planet_flag = do_nature_reserve 
+					should_invest_into_research = yes
+					OR = {
+						positive_society_modifier_medium = yes
+						positive_society_modifier_large = yes
+						positive_physics_modifier_medium = yes
+						positive_physics_modifier_large = yes
+						positive_engineering_modifier_medium = yes
+						positive_engineering_modifier_large = yes
+					}
+				}
+				NOT = {
+					OR = {
+						can_invest_into_research = no
+						AND = {
+							NOT = {
+								OR = {
+									has_planet_flag = do_research_complex
+									has_planet_flag = do_nature_reserve 
+								}
+							}
+							bad_consumer_goods_economy = yes
+							country_uses_consumer_goods = yes
+						}
+					}
+				}
+			}
+			set_planet_flag = do_ai_research
+		}
+# Trade
+		IF = {
+			limit = {
+				NOT = {
+					OR = {
+						need_minerals = yes
+						need_food = yes
+						need_volatile_motes = yes
+						need_exotic_gases = yes
+						need_rare_crystals = yes
+						need_alloys = yes
+						need_consumer_goods = yes
+						AND = {
+							any_planet_within_border = { 
+								has_designation = col_city
+								num_pops < 20
+							}
+						}
+					}
+				}
+			}
+			set_planet_flag = do_ai_trade
+		}
+# Bureaucratic
+		IF = {
+			limit = {
+				empire_too_large = yes
+				NOT = {
+					OR = {
+						need_minerals = yes
+						need_food = yes
+						need_volatile_motes = yes
+						need_exotic_gases = yes
+						need_rare_crystals = yes
+						need_alloys = yes
+						need_consumer_goods = yes
+						AND = {
+							any_planet_within_border = { 
+								has_designation = col_bureau
+								num_pops < 20
+							}
+						}
+					}
+				}
+			}
+			set_planet_flag = do_ai_bureaucratic
+		}
+# Fortress
+		IF = {
+			limit = {
+				NOT = {
+					OR = {
+						need_minerals = yes
+						need_food = yes
+						need_volatile_motes = yes
+						need_exotic_gases = yes
+						need_rare_crystals = yes
+						need_alloys = yes
+						need_consumer_goods = yes
+						has_planet_flag = do_ai_bureaucratic
+						has_planet_flag = do_ai_research
+						has_planet_flag = do_ai_trade
+						has_planet_flag = do_ai_alloys
+						has_planet_flag = do_ai_consumer_goods
+					}
+				}
+			}
+			set_planet_flag = do_ai_fortress
+		}
+# Special Resources
+		IF = {
+			limit = {
+				OR = {
+					has_planet_flag = do_gas_refinery
+					has_planet_flag = do_crystal_mines 
+					has_planet_flag = do_chemistry_industry 
+				}
+				OR = {
+					OR = {
+						need_volatile_motes = yes
+						need_exotic_gases = yes
+						need_rare_crystals = yes
+					}
+					need_minerals = no
+					need_food = no
+					need_energy = no
+				}
+			}
+			set_planet_flag = do_ai_sr
+		}
+		IF = {
+			limit = {
+				NOT = {
+					OR = {
+						has_planet_flag = do_ai_energy
+						has_planet_flag = do_ai_food
+						has_planet_flag = do_ai_minerals
+						has_planet_flag = do_ai_consumer_goods
+						has_planet_flag = do_ai_alloys
+						has_planet_flag = do_ai_research
+						has_planet_flag = do_ai_trade
+						has_planet_flag = do_ai_bureaucratic
+						has_planet_flag = do_ai_fortress
+						has_planet_flag = do_ai_sr
+					}
+				}
+			}
+			set_planet_flag = do_ai_anything
+		}
+		IF = {
+			limit = {
+				OR = {
+					NOT = {
+						OR = {
+							has_planet_flag = do_ai_energy
+							has_planet_flag = do_ai_food
+							has_planet_flag = do_ai_minerals
+							has_planet_flag = do_ai_research
+							has_planet_flag = do_ai_fortress
+							has_planet_flag = do_ai_sr
+							has_planet_flag = do_ai_anything
+						}
+					}
+					is_planet_class = pc_relic
+				}
+			}
+			set_planet_flag = do_ai_ecu_planned
+		}
+	}
+}

@@ -1,0 +1,54 @@
+DistrictOverhaul 2.0.0a:
+
+-Tree of Life deposit fix
+-Ringworld Science district reenabled
+-New Ascension Perk:
+	-External Habitat Expansion
+	-Will unlock a new infinte expansion district for habitats
+-Name fix for the load order
+
+DistrictOverhaul 2.0.0b:
+
+-Tweak to city, hive, nexus districts
+-fixed PD deposits for tidal generators
+-fixed Relic World starts
+-new decision to show / hide the decisions
+-new bureaucratic district (secondary)
+
+DistrictOverhaul 2.0.0c:
+
+-Job icon fix
+-Fixed the planet modifier for the PD special jobs
+-fixed the external habitat, so that it only appears on habitats
+
+DistrictOverhaul 2.0.0d:
+
+-fixed External Habitat Expansion
+
+DistrictOverhaul 2.0.1:
+
+-rebalanced the housing policy -> always start on rural
+-fixed the tooltip for "gpm_precursor_mines"
+-clerk job added to the city district
+-removed secondary district enactment time
+-increased archeologist production from 0.1 to 0.25
+-fixed the colony types not giving bonuses to new jobs and districts
+-planet automation
+
+DistrictOverhaul 2.0.2:
+
+-pc_city dicisions fix
+-advanced colony ai
+-ai changes
+
+DistrictOverhaul 2.0.3
+
+-Added built in compatibility with EHOF and Planetary Diversity.
+
+DistrictOverhaul 2.0.4
+
+-Corrected some minor bugs
+
+DistrictOverhaul 2.0.5
+
+-Updated for new PD update

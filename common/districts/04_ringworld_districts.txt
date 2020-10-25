@@ -1,0 +1,1062 @@
+@rw_cost = 2000
+@rw_cost_sr = 100
+@rw_maintenance = 10
+@rw_maintenance_sr = 2
+@rw_district_buildtime = 600
+
+district_rw_city = {
+	base_buildtime = @rw_district_buildtime
+	is_capped_by_modifier = no
+	
+	show_on_uncolonized = {
+		exists = from
+		from = { is_regular_empire = yes }
+		has_district_rw_city = yes
+		uses_district_set = ring_world
+	}
+	
+	potential = {
+		exists = owner
+		owner = { is_regular_empire = yes }
+		has_district_rw_city = yes
+		uses_district_set = ring_world
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_rw_nexus
+		district_rw_hive
+	# Ascension Ringworlds (rw_city, rw_hive, rw_nexus)
+		district_arcology_ringworld_housing
+		district_asc_rw_city
+		district_asc_rw_hive
+		district_asc_rw_nexus
+	}	
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @rw_cost
+		}
+		upkeep = {
+			energy = @rw_maintenance
+		}		
+	}	
+
+	planet_modifier = {
+		planet_housing_add = 50
+		job_enforcer_add = 1
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = {
+			planet_housing_add = -10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_policy_flag = do_rural_housing }
+		}
+		modifier = { planet_housing_add = -20 }
+	}	
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_policy_flag = do_centralized_housing }
+		}
+		modifier = {
+			job_clerk_add = 10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_non_swapped_tradition = tr_prosperity_public_works }
+		}
+		modifier = {
+			planet_housing_add = 10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				has_technology = tech_housing_1 
+			}
+		}
+		modifier = {
+			planet_housing_add = 10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				has_technology = tech_housing_2 
+				NOT = { has_valid_civic = civic_agrarian_idyll }
+			}
+		}
+		modifier = {
+			planet_housing_add = 10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_non_swapped_tradition = tr_prosperity_interstellar_franchising }
+		}
+		modifier = {
+			job_clerk_add = 10
+		}
+	}
+	
+# Triggered Planet Modifiers:
+	# ! Expanded Traits, Civics, Pops, and More (City District only)
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			OR = {
+				owner = { NOT = { has_ascension_perk = ap_mind_over_matter } }
+				NOT = { has_planet_flag = built_one_psi_corps }
+			}
+		}
+		modifier = { job_enforcer_add = 1 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			OR = {
+				owner = { has_ascension_perk = ap_mind_over_matter }
+				has_planet_flag = built_one_psi_corps
+			}
+		}
+		modifier = { job_telepath_add = 1 }
+	}
+# End of compatibility
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		text = job_clerk_effect_desc
+	}
+	
+	ai_weight = {
+		weight = 4
+		# Does the planet need housing?
+		modifier = {
+			factor = 25
+			need_housing = yes
+		}
+		
+		# No Housing needed
+		modifier = {
+			factor = 0
+			free_housing > 2
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 4
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+district_rw_hive = {
+	base_buildtime = @rw_district_buildtime
+	is_capped_by_modifier = no
+	
+	show_on_uncolonized = {
+		exists = from
+		from = { is_hive_empire = yes }
+		has_district_rw_hive = yes
+		uses_district_set = ring_world
+	}
+	
+	potential = {
+		exists = owner
+		owner = { is_hive_empire = yes }
+		has_district_rw_hive = yes
+		uses_district_set = ring_world
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_rw_nexus
+		district_rw_city
+	# Ascension Ringworlds (rw_city, rw_hive, rw_nexus)
+		district_arcology_ringworld_housing
+		district_asc_rw_city
+		district_asc_rw_hive
+		district_asc_rw_nexus
+	}	
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @rw_cost
+		}
+		upkeep = {
+			energy = @rw_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 60
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_1 }
+		}
+		modifier = {
+			planet_housing_add = 10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_2 }
+		}
+		modifier = {
+			planet_housing_add = 10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_swapped_tradition = tr_prosperity_extended_hives }
+		}
+		modifier = {
+			planet_housing_add = 10
+		}
+	}
+	
+	ai_weight = {
+		weight = 4
+		# Does the planet need housing?
+		modifier = {
+			factor = 25
+			need_housing = yes
+		}
+		
+		# No Housing needed
+		modifier = {
+			factor = 0
+			free_housing > 2
+		}
+	}
+	ai_resource_production = {
+		energy = 4
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+district_rw_nexus = {
+	base_buildtime = @rw_district_buildtime
+	is_capped_by_modifier = no
+	
+	show_on_uncolonized = {
+		exists = from
+		from = { is_machine_empire = yes }
+		has_district_rw_nexus = yes
+		uses_district_set = ring_world
+	}
+	
+	potential = {
+		exists = owner
+		owner = { is_machine_empire = yes }
+		has_district_rw_nexus = yes
+		uses_district_set = ring_world
+	}
+
+	conversion_ratio = 0.5
+	convert_to = {
+		district_rw_hive
+		district_rw_city
+	# Ascension Ringworlds (rw_city, rw_hive, rw_nexus)
+		district_arcology_ringworld_housing
+		district_asc_rw_city
+		district_asc_rw_hive
+		district_asc_rw_nexus
+	}	
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @rw_cost
+		}
+		upkeep = {
+			energy = @rw_maintenance
+		}
+	}
+
+	planet_modifier = {
+		planet_housing_add = 50
+		job_maintenance_drone_add = 10
+		job_technician_drone_add = 10
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_1 }
+		}
+		modifier = {
+			planet_housing_add = 10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_housing_2 }
+		}
+		modifier = {
+			planet_housing_add = 10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_swapped_tradition = tr_prosperity_optimized_nexus }
+		}
+		modifier = {
+			planet_housing_add = 10
+		}
+	}
+	
+	ai_weight = {
+		weight = 4
+		# Does the planet need housing?
+		modifier = {
+			factor = 25
+			need_housing = yes
+		}
+		
+		# No Housing needed
+		modifier = {
+			factor = 0
+			free_housing > 2
+		}
+	}
+	ai_resource_production = {
+		energy = 4
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+district_rw_generator = {
+	base_buildtime = @rw_district_buildtime
+	is_capped_by_modifier = no
+	
+	show_on_uncolonized = { 
+		has_district_rw_generator = yes
+		uses_district_set = ring_world
+	}
+	
+	potential = { 
+		has_district_rw_generator = yes
+		uses_district_set = ring_world
+	}
+	
+	convert_to = {
+		district_rw_commercial
+	}
+	
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @rw_cost
+			rare_crystals = @rw_cost_sr
+		}
+		upkeep = {
+			energy = @rw_maintenance
+			rare_crystals = @rw_maintenance_sr
+		}		
+	}
+
+	#triggered_planet_modifier = {
+	#	planet_housing_add = 20
+	#}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}		
+		job_technician_drone_add = 30
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}	
+		job_technician_drone_add = 30
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_technician_add = 30
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_fe_acolyte_generator_add = 30
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_policy_flag = do_rural_housing }
+		}
+		modifier = { planet_housing_add = 20 }
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_technician_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_technician_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_generator_effect_desc
+	}
+	
+	ai_weight = {
+		weight = 5
+		# Is there a negative income?
+		modifier = {
+			factor = 18
+			need_energy = yes
+		}
+		modifier = {
+			factor = 1.4
+			low_energy_storage = yes
+		}
+		# Does the planet have positive modifiers?
+		modifier = {
+			factor = 1.1
+			positive_energy_modifier_low = yes
+		}
+		modifier = {
+			factor = 1.5
+			positive_energy_modifier_medium = yes
+		}
+		modifier = {
+			factor = 2
+			positive_energy_modifier_large = yes
+		}
+		# Does the country have a bad energy economy?
+		modifier = {
+			factor = 2
+			bad_energy_economy = yes
+		}
+		# Workers looking for work
+		modifier = {
+			factor = 5
+			has_unemployed_workers = yes
+		}
+		# No one to work it anyway
+		modifier = {
+			factor = 0
+			AND = {
+				free_jobs > 1
+				has_unemployed_workers = no
+			}
+		}
+		# To much energy already
+		modifier = {
+			factor = 0
+			energy_not_needed = yes
+		}
+	}
+	ai_resource_production = {
+		energy = 10
+		trigger = {
+			OR = {
+				low_energy_income = yes
+				medium_energy_income = yes
+			}
+		}
+	}
+}
+
+district_rw_commercial = {
+	base_buildtime = @rw_district_buildtime
+	is_capped_by_modifier = no
+	
+	show_on_uncolonized = {
+		exists = from
+		from = { 
+			is_gestalt = no 
+			is_fallen_empire = no
+		}
+		has_district_rw_commercial = yes
+		uses_district_set = ring_world
+	}
+	
+	potential = {
+		exists = owner
+		owner = { 
+			is_gestalt = no 
+			is_fallen_empire = no
+		}
+		has_district_rw_commercial = yes
+		uses_district_set = ring_world
+	}
+	
+	convert_to = {
+		district_rw_generator
+	}
+	
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @rw_cost
+			rare_crystals = @rw_cost_sr
+		}
+		upkeep = {
+			energy = @rw_maintenance
+			rare_crystals = @rw_maintenance_sr
+		}		
+	}
+		
+	triggered_planet_modifier = {
+		#planet_housing_add = 20
+		job_merchant_add = 5
+		job_artisan_add = 5
+		job_clerk_add = 10
+	}	
+
+	triggered_desc = {
+		text = job_merchant_effect_desc
+	}	
+
+	triggered_desc = {
+		text = job_artisan_effect_desc
+	}	
+	
+	triggered_desc = {
+		text = job_clerk_effect_desc
+	}	
+		
+	ai_weight = {
+		weight = 7.5
+		# Is there a negative energy income?
+		modifier = {
+			factor = 18
+			need_energy = yes
+		}
+		modifier = {
+			factor = 1.4
+			low_energy_storage = yes
+		}
+		# Does the country have a bad energy economy?
+		modifier = {
+			factor = 2
+			bad_energy_economy = yes
+		}
+		# Workers looking for work
+		modifier = {
+			factor = 5
+			has_unemployed_workers = yes
+		}
+		# Is the empire a megacorp
+		modifier = {
+			factor = 2
+			is_megacorp = yes
+		}
+		# No one to work it anyway
+		modifier = {
+			factor = 0
+			AND = {
+				free_jobs > 1
+				has_unemployed_workers = no
+			}
+		}
+		# To much energy already
+		modifier = {
+			factor = 0
+			energy_not_needed = yes
+			is_megacorp = no
+		}
+	}
+	ai_resource_production = {
+		consumer_goods = 5
+		trigger = {
+			always = yes
+		}
+	}
+}
+
+district_rw_science = {
+	base_buildtime = @rw_district_buildtime
+	is_capped_by_modifier = no
+	
+	show_on_uncolonized = {	
+		has_district_rw_science = yes
+		uses_district_set = ring_world
+	}
+	
+	potential = { 
+		has_district_rw_science = yes
+		uses_district_set = ring_world
+	}
+	
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @rw_cost
+			exotic_gases = @rw_cost_sr
+		}
+		upkeep = {
+			energy = @rw_maintenance
+			exotic_gases = @rw_maintenance_sr
+		}		
+	}
+	
+	#triggered_planet_modifier = {
+	#	planet_housing_add = 20
+	#}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_regular_empire = yes }
+		}
+		modifier = {
+			job_researcher_add = 20
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_brain_drone_add = 20
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {	
+			job_calculator_add = 20
+		}
+	}
+	
+	triggered_desc = {
+		trigger = { 
+			exists = owner
+			owner = { is_regular_empire = yes } 
+		}
+		text = job_researcher_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = { 
+			exists = owner
+			owner = { is_hive_empire = yes } 
+		}
+		text = job_brain_drone_effect_desc
+	}
+
+	triggered_desc = {
+		trigger = { 
+			exists = owner
+			owner = { is_machine_empire = yes } 
+		}
+		text = job_calculator_effect_desc
+	}	
+	
+	ai_weight = {
+		weight = 3
+		# Economy allows a focus on research
+		modifier = {
+			factor = 10
+			should_invest_into_research = yes
+		}
+		# Specialists looking for work
+		modifier = {
+			factor = 5
+			has_unemployed_specialists = yes
+		}
+		# Does the planet have positive modifiers?
+		modifier = {
+			factor = 1.05
+			positive_society_modifier_low = yes
+		}
+		modifier = {
+			factor = 1.2
+			positive_society_modifier_medium = yes
+		}
+		modifier = {
+			factor = 1.5
+			positive_society_modifier_large = yes
+		}
+		modifier = {
+			factor = 1.05
+			positive_physics_modifier_low = yes
+		}
+		modifier = {
+			factor = 1.2
+			positive_physics_modifier_medium = yes
+		}
+		modifier = {
+			factor = 1.5
+			positive_physics_modifier_large = yes
+		}
+		modifier = {
+			factor = 1.05
+			positive_engineering_modifier_low = yes
+		}
+		modifier = {
+			factor = 1.2
+			positive_engineering_modifier_medium = yes
+		}
+		modifier = {
+			factor = 1.5
+			positive_engineering_modifier_large = yes
+		}
+		modifier = {
+			factor = 0
+			can_invest_into_research = no
+		}
+		# No one to work it anyway
+		modifier = {
+			factor = 0
+			AND = {
+				free_jobs > 1
+				has_unemployed_workers = no
+				has_unemployed_specialists = no
+			}
+		}
+	}
+	ai_resource_production = {
+		engineering_research = 2
+		physics_research = 2
+		society_research = 2
+		trigger = {
+			always = yes
+		}
+	}
+
+}
+
+district_rw_farming = {
+	base_buildtime = @rw_district_buildtime
+	is_capped_by_modifier = no
+	
+	show_on_uncolonized = {	
+		exists = from
+		from = { 
+			OR = {
+				any_owned_pop = {
+					is_organic_species = yes
+					is_lithoid = no
+				}
+			}
+		}
+		has_district_rw_farming = yes
+		uses_district_set = ring_world
+	}
+	
+	potential = { 
+		exists = owner
+		owner = { 
+			OR = {
+				any_owned_pop = {
+					is_organic_species = yes
+					is_lithoid = no
+				}
+			}
+		}
+		has_district_rw_farming = yes
+		uses_district_set = ring_world
+	}
+
+	resources = {
+		category = planet_districts
+		cost = {
+			minerals = @rw_cost
+			volatile_motes = @rw_cost_sr
+		}
+		upkeep = {
+			energy = @rw_maintenance
+			volatile_motes = @rw_maintenance_sr
+		}		
+	}	
+	
+	convert_to = {
+		district_rw_universal
+	}
+
+	# triggered for tooltip formatting purposes
+	#triggered_planet_modifier = {
+	#	modifier = {
+	#		planet_housing_add = 20
+	#	}
+	#}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_policy_flag = do_rural_housing }
+		}
+		modifier = { planet_housing_add = 20 }
+	}
+			
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_agri_drone_add = 30
+		}
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_agri_drone_add = 20
+		}
+	}
+		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = {
+			job_farmer_add = 20
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = {
+			job_fe_acolyte_farm_add = 20
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = {
+			planet_housing_add = 10
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				has_technology = tech_housing_agrarian_idyll 
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = {
+			planet_housing_add = 10
+		}
+	}	
+	
+# Triggered Planet Modifiers
+	# ! Expanded Traits, Civics, Pops, and More (Farming District only)
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_lithoid_empire = no
+				has_technology = tech_housing_agrarian_idyll 
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = { planet_housing_add = 10 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_swapped_tradition = tr_prosperity_arcadian_housing
+				is_lithoid_empire = no
+			}
+		}
+		modifier = { planet_housing_add = 10 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_lithoid_empire = no
+				has_technology = tech_agrarian_goods 
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = { job_artisan_add = 10 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_agribusiness }
+		}
+		modifier = {
+			job_farmer_add = 10
+			planet_housing_add = 10
+		}
+	}
+# End of compatibility
+		
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_agri_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_farmer_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_farm_effect_desc
+	}
+	
+	ai_weight = { 
+		weight = 5
+		# Is there a negative income?
+		modifier = {
+			factor = 17
+			need_food = yes
+		}
+		modifier = {
+			factor = 1.5
+			low_food_storage = yes
+		}
+		# Does the planet have positive modifiers?
+		modifier = {
+			factor = 1.1
+			positive_food_modifier_low = yes
+		}
+		modifier = {
+			factor = 1.5
+			positive_food_modifier_medium = yes
+		}
+		modifier = {
+			factor = 2
+			positive_food_modifier_large = yes
+		}
+		# Does the country have a bad food economy?
+		modifier = {
+			factor = 2
+			bad_food_economy = yes
+		}
+		# Workers looking for work
+		modifier = {
+			factor = 5
+			has_unemployed_workers = yes
+		}
+		# No one to work it anyway
+		modifier = {
+			factor = 0
+			AND = {
+				free_jobs > 1
+				has_unemployed_workers = no
+			}
+		}
+		# To much food already / doesn't use food
+		modifier = {
+			factor = 0
+			food_not_needed = yes
+		}
+	}
+	ai_resource_production = {
+		food = 10
+		trigger = {
+			OR = {
+				low_food_income = yes
+				medium_food_income = yes
+			}
+		}
+	}
+}
+
