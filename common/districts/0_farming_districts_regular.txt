@@ -34,12 +34,14 @@
 
 # Bookmark: Tier 1 farming
 district_farming = {
+	icon = district_farming
 	base_buildtime = @tier_1_buildtime
 	min_for_deposits_on_planet = @generic_district_min_number_on_planet	
 	max_for_deposits_on_planet = @generic_district_max_number_on_planet
 	
 	show_on_uncolonized = {
-		has_district_farming = yes
+		generic_farming_districts_allowed = yes
+		uncapped_districts_allowed = no
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
@@ -48,7 +50,8 @@ district_farming = {
 	}
 	
 	potential = {
-		has_district_farming = yes
+		generic_farming_districts_allowed = yes
+		uncapped_districts_allowed = no
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
@@ -215,13 +218,15 @@ district_farming = {
 }
 
 district_farming_uncapped = {
+	icon = district_farming
 	base_buildtime = @tier_1_buildtime
 	is_capped_by_modifier = no
 	min_for_deposits_on_planet = @generic_district_min_number_on_planet	
 	max_for_deposits_on_planet = @generic_district_max_number_on_planet
 	
 	show_on_uncolonized = {
-		has_district_farming = yes
+		generic_farming_districts_allowed = yes
+		uncapped_districts_allowed = yes
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
@@ -230,7 +235,8 @@ district_farming_uncapped = {
 	}
 	
 	potential = {
-		has_district_farming = yes
+		generic_farming_districts_allowed = yes
+		uncapped_districts_allowed = yes
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
@@ -403,7 +409,7 @@ district_hydroponic_bay = {
 	max_for_deposits_on_planet = @generic_district_max_number_on_planet
 
 	show_on_uncolonized = {
-		has_district_hydroponic_bay = yes
+		hydroponics_allowed = yes
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
@@ -412,7 +418,7 @@ district_hydroponic_bay = {
 	}
 	
 	potential = {
-		has_district_hydroponic_bay = yes
+		hydroponics_allowed = yes
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
@@ -582,10 +588,13 @@ district_hydroponic_bay = {
 
 # Bookmark: Tier 2 farming
 district_farming_tier_2 = {
+	icon = district_farming
 	base_buildtime = @tier_2_buildtime
 	
 	potential = {
-		has_tier_2_district_farming = yes # TODO add the trigger!
+		generic_farming_districts_allowed = yes
+		tier_2_allowed = yes
+		uncapped_districts_allowed = no
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
@@ -755,11 +764,14 @@ district_farming_tier_2 = {
 }
 
 district_farming_uncapped_tier_2 = {
+	icon = district_farming
 	base_buildtime = @tier_2_buildtime
 	is_capped_by_modifier = no
 
 	potential = {
-		has_tier_2_district_farming = yes # TODO add the trigger!
+		generic_farming_districts_allowed = yes
+		tier_2_allowed = yes
+		uncapped_districts_allowed = yes
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
@@ -932,9 +944,9 @@ district_hydroponic_bay_tier_2 = {
 	base_buildtime = @tier_2_buildtime
 	is_capped_by_modifier = no
 	
-	potential = {
-		has_district_hydroponic_bay = yes
-		has_tier_2_district_farming = yes # TODO add the trigger!
+	potential = 	potential = {
+		hydroponics_allowed = yes
+		tier_2_allowed = yes
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
@@ -1107,10 +1119,13 @@ district_hydroponic_bay_tier_2 = {
 
 # Bookmark: Tier 3 farming
 district_farming_tier_3 = {
+	icon = district_farming
 	base_buildtime = @tier_3_buildtime
 	
 	potential = {
-		has_tier_3_district_farming = yes # TODO add the trigger!
+		generic_farming_districts_allowed = yes
+		tier_3_allowed = yes
+		uncapped_districts_allowed = no
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
@@ -1280,11 +1295,14 @@ district_farming_tier_3 = {
 }
 
 district_farming_uncapped_tier_3 = {
+	icon = district_farming
 	base_buildtime = @tier_3_buildtime
 	is_capped_by_modifier = no
 
 	potential = {
-		has_tier_3_district_farming = yes # TODO add the trigger!
+		generic_farming_districts_allowed = yes
+		tier_3_allowed = yes
+		uncapped_districts_allowed = yes
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
@@ -1458,8 +1476,8 @@ district_hydroponic_bay_tier_3 = {
 	is_capped_by_modifier = no
 	
 	potential = {
-		has_district_hydroponic_bay = yes
-		has_tier_3_district_farming = yes # TODO add the trigger!
+		hydroponics_allowed = yes
+		tier_3_allowed = yes
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
