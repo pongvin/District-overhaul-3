@@ -1,0 +1,983 @@
+# ----
+# Constants: 
+# Build cost of the 3 tiers of generic districts.
+@tier_1_base_resource_build_cost = 300
+@tier_2_base_resource_build_cost = 550
+@tier_3_base_resource_build_cost = 1200
+
+# Build time of the 3 tiers of generic districts.
+@tier_1_buildtime = 240
+@tier_2_buildtime = 500
+@tier_3_buildtime = 1000
+
+# Upkeep of the 3 tiers of generic districts.
+@tier_1_base_resource_upkeep = 1
+@tier_2_base_resource_upkeep = 5
+@tier_3_base_resource_upkeep = 10
+@tier_2_strategic_resource_upkeep = 1
+@tier_3_strategic_resource_upkeep = 2
+
+# Number of base housing and job count of the 3 tiers of generic districts.
+@tier_1_base_housing = 5
+@tier_2_base_housing = 10
+@tier_3_base_housing = 20
+@tier_1_base_job_count = 1
+@tier_2_base_job_count = 3
+@tier_3_base_job_count = 6
+# ----
+
+# Bookmark: Tier 1 housing
+district_city = {
+	base_buildtime = @tier_1_buildtime
+	is_capped_by_modifier = no
+	
+	show_on_uncolonized = {
+		generic_housing_districts_allowed = yes
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	potential = {
+		generic_housing_districts_allowed = yes
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	allow = { generic_housing_districts_allowed = yes }
+	
+	conversion_ratio = 1
+	convert_to = {
+		# TODO add conversion
+	}
+		
+	resources = {
+		category = planet_districts_cities
+		cost = { minerals = @tier_1_base_resource_build_cost }
+		upkeep = { energy = @tier_1_base_resource_upkeep }		
+	}
+
+	planet_modifier = {
+		planet_housing_add = @tier_1_base_housing
+		job_clerk_add = @tier_1_base_job_count
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_clerk_effect_desc
+	}
+	
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 100
+			planet = {
+				planet_devastation < 1
+				years_passed > 10
+				free_housing < 4
+			}
+		}
+		modifier = {
+			weight = 1
+			num_free_districts = { type = district_mining value = 0 }
+			num_free_districts = { type = district_generator value = 0 }
+			num_free_districts = { type = district_farming value = 0 }
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			OR = {
+				num_free_districts = { type = district_mining value > 0 }
+				num_free_districts = { type = district_generator value > 0 }
+				num_free_districts = { type = district_farming value > 0 }
+			}
+			count_pops = {
+				limit = {
+					is_unemployed = yes
+					NOR = {
+						is_pop_category = specialist
+						is_pop_category = ruler
+					}
+				}
+				count >= 1
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			owner = {
+				has_resource = {
+					type = minerals
+					amount < 400
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			free_jobs > 1
+			free_housing > 1
+		}
+	}
+}
+
+district_hive = {
+	base_buildtime = @tier_1_buildtime
+	is_capped_by_modifier = no
+	
+	show_on_uncolonized = {
+		generic_housing_districts_allowed = yes
+		from = { is_hive_empire = yes }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	potential = {
+		generic_housing_districts_allowed = yes
+		exists = owner
+		owner = { is_hive_empire = yes }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	allow = { generic_housing_districts_allowed = yes }
+	
+	conversion_ratio = 1
+	convert_to = {
+		# TODO add conversion
+	}
+		
+	resources = {
+		category = planet_districts_cities
+		cost = { minerals = @tier_1_base_resource_build_cost }
+		upkeep = { energy = @tier_1_base_resource_upkeep }		
+	}
+
+	planet_modifier = {
+		planet_housing_add = @tier_1_base_housing
+		job_maintenance_drone_add = @tier_1_base_job_count
+	}
+	
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 100
+			planet = {
+				planet_devastation < 1
+				years_passed > 10
+				free_housing < 4
+			}
+		}
+		modifier = {
+			weight = 1
+			num_free_districts = { type = district_mining value = 0 }
+			num_free_districts = { type = district_generator value = 0 }
+			num_free_districts = { type = district_farming value = 0 }
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			OR = {
+				num_free_districts = { type = district_mining value > 0 }
+				num_free_districts = { type = district_generator value > 0 }
+				num_free_districts = { type = district_farming value > 0 }
+			}
+			count_pops = {
+				limit = {
+					is_unemployed = yes
+					NOR = {
+						is_pop_category = specialist
+						is_pop_category = ruler
+					}
+				}
+				count >= 1
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			owner = {
+				has_resource = {
+					type = minerals
+					amount < 400
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			free_jobs > 1
+			free_housing > 1
+		}
+	}
+}
+
+district_nexus = {
+	base_buildtime = @tier_1_buildtime
+	is_capped_by_modifier = no
+	
+	show_on_uncolonized = {
+		generic_housing_districts_allowed = yes
+		from = { is_machine_empire = yes }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	potential = {
+		generic_housing_districts_allowed = yes
+		exists = owner
+		owner = { is_machine_empire = yes }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	allow = { generic_housing_districts_allowed = yes }
+	
+	conversion_ratio = 1
+	convert_to = {
+		# TODO add conversion
+	}
+		
+	resources = {
+		category = planet_districts_cities
+		cost = { minerals = @tier_1_base_resource_build_cost }
+		upkeep = { energy = @tier_1_base_resource_upkeep }		
+	}
+
+	planet_modifier = {
+		planet_housing_add = @tier_1_base_housing
+		job_maintenance_drone_add = @tier_1_base_job_count
+	}
+	
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 100
+			planet = {
+				planet_devastation < 1
+				years_passed > 10
+				free_housing < 4
+			}
+		}
+		modifier = {
+			weight = 1
+			num_free_districts = { type = district_mining value = 0 }
+			num_free_districts = { type = district_generator value = 0 }
+			num_free_districts = { type = district_farming value = 0 }
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			OR = {
+				num_free_districts = { type = district_mining value > 0 }
+				num_free_districts = { type = district_generator value > 0 }
+				num_free_districts = { type = district_farming value > 0 }
+			}
+			count_pops = {
+				limit = {
+					is_unemployed = yes
+					NOR = {
+						is_pop_category = specialist
+						is_pop_category = ruler
+					}
+				}
+				count >= 1
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			owner = {
+				has_resource = {
+					type = minerals
+					amount < 400
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			free_jobs > 1
+			free_housing > 1
+		}
+	}
+}
+
+# Bookmark: Tier 2 housing
+district_city_tier_2 = {
+	base_buildtime = @tier_2_buildtime
+	is_capped_by_modifier = no
+	
+	potential = {
+		generic_housing_districts_allowed = yes
+		tier_2_allowed = yes
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	allow = { generic_housing_districts_allowed = yes }
+	
+	conversion_ratio = 1
+	convert_to = {
+		# TODO add conversion
+	}
+		
+	resources = {
+		category = planet_districts_cities
+		cost = { minerals = @tier_2_base_resource_build_cost }
+		upkeep = { energy = @tier_2_base_resource_upkeep }		
+	}
+
+	planet_modifier = {
+		planet_housing_add = @tier_2_base_housing
+		job_clerk_add = @tier_2_base_job_count
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_clerk_effect_desc
+	}
+	
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 100
+			planet = {
+				planet_devastation < 1
+				years_passed > 10
+				free_housing < 4
+			}
+		}
+		modifier = {
+			weight = 1
+			num_free_districts = { type = district_mining value = 0 }
+			num_free_districts = { type = district_generator value = 0 }
+			num_free_districts = { type = district_farming value = 0 }
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			OR = {
+				num_free_districts = { type = district_mining value > 0 }
+				num_free_districts = { type = district_generator value > 0 }
+				num_free_districts = { type = district_farming value > 0 }
+			}
+			count_pops = {
+				limit = {
+					is_unemployed = yes
+					NOR = {
+						is_pop_category = specialist
+						is_pop_category = ruler
+					}
+				}
+				count >= 1
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			owner = {
+				has_resource = {
+					type = minerals
+					amount < 400
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			free_jobs > 1
+			free_housing > 1
+		}
+	}
+}
+
+district_hive_tier_2 = {
+	base_buildtime = @tier_2_buildtime
+	is_capped_by_modifier = no
+	
+	potential = {
+		generic_housing_districts_allowed = yes
+		tier_2_allowed = yes
+		exists = owner
+		owner = { is_hive_empire = yes }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	allow = { generic_housing_districts_allowed = yes }
+	
+	conversion_ratio = 1
+	convert_to = {
+		# TODO add conversion
+	}
+		
+	resources = {
+		category = planet_districts_cities
+		cost = { minerals = @tier_2_base_resource_build_cost }
+		upkeep = { energy = @tier_2_base_resource_upkeep }		
+	}
+
+	planet_modifier = {
+		planet_housing_add = @tier_2_base_housing
+		job_maintenance_drone_add = @tier_2_base_job_count
+	}
+	
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 100
+			planet = {
+				planet_devastation < 1
+				years_passed > 10
+				free_housing < 4
+			}
+		}
+		modifier = {
+			weight = 1
+			num_free_districts = { type = district_mining value = 0 }
+			num_free_districts = { type = district_generator value = 0 }
+			num_free_districts = { type = district_farming value = 0 }
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			OR = {
+				num_free_districts = { type = district_mining value > 0 }
+				num_free_districts = { type = district_generator value > 0 }
+				num_free_districts = { type = district_farming value > 0 }
+			}
+			count_pops = {
+				limit = {
+					is_unemployed = yes
+					NOR = {
+						is_pop_category = specialist
+						is_pop_category = ruler
+					}
+				}
+				count >= 1
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			owner = {
+				has_resource = {
+					type = minerals
+					amount < 400
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			free_jobs > 1
+			free_housing > 1
+		}
+	}
+}
+
+district_nexus_tier_2 = {
+	base_buildtime = @tier_2_buildtime
+	is_capped_by_modifier = no
+	
+	potential = {
+		generic_housing_districts_allowed = yes
+		tier_2_allowed = yes
+		exists = owner
+		owner = { is_machine_empire = yes }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	allow = { generic_housing_districts_allowed = yes }
+	
+	conversion_ratio = 1
+	convert_to = {
+		# TODO add conversion
+	}
+		
+	resources = {
+		category = planet_districts_cities
+		cost = { minerals = @tier_2_base_resource_build_cost }
+		upkeep = { energy = @tier_2_base_resource_upkeep }		
+	}
+
+	planet_modifier = {
+		planet_housing_add = @tier_2_base_housing
+		job_maintenance_drone_add = @tier_2_base_job_count
+	}
+	
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 100
+			planet = {
+				planet_devastation < 1
+				years_passed > 10
+				free_housing < 4
+			}
+		}
+		modifier = {
+			weight = 1
+			num_free_districts = { type = district_mining value = 0 }
+			num_free_districts = { type = district_generator value = 0 }
+			num_free_districts = { type = district_farming value = 0 }
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			OR = {
+				num_free_districts = { type = district_mining value > 0 }
+				num_free_districts = { type = district_generator value > 0 }
+				num_free_districts = { type = district_farming value > 0 }
+			}
+			count_pops = {
+				limit = {
+					is_unemployed = yes
+					NOR = {
+						is_pop_category = specialist
+						is_pop_category = ruler
+					}
+				}
+				count >= 1
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			owner = {
+				has_resource = {
+					type = minerals
+					amount < 400
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			free_jobs > 1
+			free_housing > 1
+		}
+	}
+}
+
+# Bookmark: Tier 3 housing
+district_city_tier_3 = {
+	base_buildtime = @tier_3_buildtime
+	is_capped_by_modifier = no
+	
+	potential = {
+		generic_housing_districts_allowed = yes
+		tier_3_allowed = yes
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	allow = { generic_housing_districts_allowed = yes }
+	
+	conversion_ratio = 1
+	convert_to = {
+		# TODO add conversion
+	}
+		
+	resources = {
+		category = planet_districts_cities
+		cost = { minerals = @tier_3_base_resource_build_cost }
+		upkeep = { energy = @tier_3_base_resource_upkeep }		
+	}
+
+	planet_modifier = {
+		planet_housing_add = @tier_3_base_housing
+		job_clerk_add = @tier_3_base_job_count
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_clerk_effect_desc
+	}
+	
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 100
+			planet = {
+				planet_devastation < 1
+				years_passed > 10
+				free_housing < 4
+			}
+		}
+		modifier = {
+			weight = 1
+			num_free_districts = { type = district_mining value = 0 }
+			num_free_districts = { type = district_generator value = 0 }
+			num_free_districts = { type = district_farming value = 0 }
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			OR = {
+				num_free_districts = { type = district_mining value > 0 }
+				num_free_districts = { type = district_generator value > 0 }
+				num_free_districts = { type = district_farming value > 0 }
+			}
+			count_pops = {
+				limit = {
+					is_unemployed = yes
+					NOR = {
+						is_pop_category = specialist
+						is_pop_category = ruler
+					}
+				}
+				count >= 1
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			owner = {
+				has_resource = {
+					type = minerals
+					amount < 400
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			free_jobs > 1
+			free_housing > 1
+		}
+	}
+}
+
+district_hive_tier_3 = {
+	base_buildtime = @tier_3_buildtime
+	is_capped_by_modifier = no
+	
+	potential = {
+		generic_housing_districts_allowed = yes
+		tier_3_allowed = yes
+		exists = owner
+		owner = { is_hive_empire = yes }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	allow = { generic_housing_districts_allowed = yes }
+	
+	conversion_ratio = 1
+	convert_to = {
+		# TODO add conversion
+	}
+		
+	resources = {
+		category = planet_districts_cities
+		cost = { minerals = @tier_3_base_resource_build_cost }
+		upkeep = { energy = @tier_3_base_resource_upkeep }		
+	}
+
+	planet_modifier = {
+		planet_housing_add = @tier_3_base_housing
+		job_maintenance_drone_add = @tier_3_base_job_count
+	}
+	
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 100
+			planet = {
+				planet_devastation < 1
+				years_passed > 10
+				free_housing < 4
+			}
+		}
+		modifier = {
+			weight = 1
+			num_free_districts = { type = district_mining value = 0 }
+			num_free_districts = { type = district_generator value = 0 }
+			num_free_districts = { type = district_farming value = 0 }
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			OR = {
+				num_free_districts = { type = district_mining value > 0 }
+				num_free_districts = { type = district_generator value > 0 }
+				num_free_districts = { type = district_farming value > 0 }
+			}
+			count_pops = {
+				limit = {
+					is_unemployed = yes
+					NOR = {
+						is_pop_category = specialist
+						is_pop_category = ruler
+					}
+				}
+				count >= 1
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			owner = {
+				has_resource = {
+					type = minerals
+					amount < 400
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			free_jobs > 1
+			free_housing > 1
+		}
+	}
+}
+
+district_nexus_tier_3 = {
+	base_buildtime = @tier_3_buildtime
+	is_capped_by_modifier = no
+	
+	potential = {
+		generic_housing_districts_allowed = yes
+		tier_3_allowed = yes
+		exists = owner
+		owner = { is_machine_empire = yes }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	allow = { generic_housing_districts_allowed = yes }
+	
+	conversion_ratio = 1
+	convert_to = {
+		# TODO add conversion
+	}
+		
+	resources = {
+		category = planet_districts_cities
+		cost = { minerals = @tier_3_base_resource_build_cost }
+		upkeep = { energy = @tier_3_base_resource_upkeep }		
+	}
+
+	planet_modifier = {
+		planet_housing_add = @tier_3_base_housing
+		job_maintenance_drone_add = @tier_3_base_job_count
+	}
+	
+	ai_weight = {
+		weight = 0
+		modifier = {
+			weight = 100
+			planet = {
+				planet_devastation < 1
+				years_passed > 10
+				free_housing < 4
+			}
+		}
+		modifier = {
+			weight = 1
+			num_free_districts = { type = district_mining value = 0 }
+			num_free_districts = { type = district_generator value = 0 }
+			num_free_districts = { type = district_farming value = 0 }
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			OR = {
+				num_free_districts = { type = district_mining value > 0 }
+				num_free_districts = { type = district_generator value > 0 }
+				num_free_districts = { type = district_farming value > 0 }
+			}
+			count_pops = {
+				limit = {
+					is_unemployed = yes
+					NOR = {
+						is_pop_category = specialist
+						is_pop_category = ruler
+					}
+				}
+				count >= 1
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			owner = {
+				has_resource = {
+					type = minerals
+					amount < 400
+				}
+			}
+		}
+		modifier = {
+			factor = 0
+			NOT = {
+				num_free_districts = { type = district_mining value = 0 }
+				num_free_districts = { type = district_generator value = 0 }
+				num_free_districts = { type = district_farming value = 0 }
+			}
+			free_jobs > 1
+			free_housing > 1
+		}
+	}
+}

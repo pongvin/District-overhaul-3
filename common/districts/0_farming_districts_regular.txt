@@ -12,18 +12,18 @@
 
 # Upkeep of the 3 tiers of generic districts.
 @tier_1_base_resource_upkeep = 1
-@tier_2_base_resource_upkeep = 7
-@tier_3_base_resource_upkeep = 15
+@tier_2_base_resource_upkeep = 5
+@tier_3_base_resource_upkeep = 10
 @tier_2_strategic_resource_upkeep = 1
-@tier_3_strategic_resource_upkeep = 3
+@tier_3_strategic_resource_upkeep = 2
 
 # Number of base housing and job count of the 3 tiers of generic districts.
 @tier_1_base_housing = 1
-@tier_2_base_housing = 3
-@tier_3_base_housing = 6
-@tier_1_base_job_count = 3
-@tier_2_base_job_count = 6
-@tier_3_base_job_count = 10
+@tier_2_base_housing = 2
+@tier_3_base_housing = 4
+@tier_1_base_job_count = 2
+@tier_2_base_job_count = 4
+@tier_3_base_job_count = 6
 
 # Min-max number of districts for planet generation.
 @generic_district_min_number_on_planet = 6
@@ -122,13 +122,6 @@ district_farming = {
 			owner = { is_fallen_empire_spiritualist = yes }
 		}
 		modifier = { job_fe_acolyte_farm_add = @tier_1_base_job_count }
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_policy_flag = do_rural_housing }
-		}
-		modifier = { planet_housing_add = 2 }
 	}
 
 	triggered_desc = {
@@ -308,13 +301,6 @@ district_farming_uncapped = {
 		}
 		modifier = { job_fe_acolyte_farm_add = @tier_1_base_job_count }
 	}	
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_policy_flag = do_rural_housing }
-		}
-		modifier = { planet_housing_add = 2 }
-	}
 
 	triggered_desc = {
 		trigger = {
@@ -492,13 +478,6 @@ district_hydroponic_bay = {
 		}
 		modifier = { job_fe_acolyte_farm_add = @tier_1_base_job_count }
 	}	
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_policy_flag = do_rural_housing }
-		}
-		modifier = { planet_housing_add = 2 }
-	}
 
 	triggered_desc = {
 		trigger = {
@@ -668,13 +647,6 @@ district_farming_tier_2 = {
 			owner = { is_fallen_empire_spiritualist = yes }
 		}
 		modifier = { job_fe_acolyte_farm_add = @tier_2_base_job_count }
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_policy_flag = do_rural_housing }
-		}
-		modifier = { planet_housing_add = 2 }
 	}
 
 	triggered_desc = {
@@ -846,13 +818,6 @@ district_farming_uncapped_tier_2 = {
 		}
 		modifier = { job_fe_acolyte_farm_add = @tier_2_base_job_count }
 	}	
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_policy_flag = do_rural_housing }
-		}
-		modifier = { planet_housing_add = 2 }
-	}
 
 	triggered_desc = {
 		trigger = {
@@ -1023,13 +988,6 @@ district_hydroponic_bay_tier_2 = {
 		}
 		modifier = { job_fe_acolyte_farm_add = @tier_2_base_job_count }
 	}	
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_policy_flag = do_rural_housing }
-		}
-		modifier = { planet_housing_add = 2 }
-	}
 
 	triggered_desc = {
 		trigger = {
@@ -1199,13 +1157,6 @@ district_farming_tier_3 = {
 			owner = { is_fallen_empire_spiritualist = yes }
 		}
 		modifier = { job_fe_acolyte_farm_add = @tier_3_base_job_count }
-	}
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_policy_flag = do_rural_housing }
-		}
-		modifier = { planet_housing_add = 2 }
 	}
 
 	triggered_desc = {
@@ -1377,13 +1328,6 @@ district_farming_uncapped_tier_3 = {
 		}
 		modifier = { job_fe_acolyte_farm_add = @tier_3_base_job_count }
 	}	
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_policy_flag = do_rural_housing }
-		}
-		modifier = { planet_housing_add = 2 }
-	}
 
 	triggered_desc = {
 		trigger = {
@@ -1554,13 +1498,6 @@ district_hydroponic_bay_tier_3 = {
 		}
 		modifier = { job_fe_acolyte_farm_add = @tier_3_base_job_count }
 	}	
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { has_policy_flag = do_rural_housing }
-		}
-		modifier = { planet_housing_add = 2 }
-	}
 
 	triggered_desc = {
 		trigger = {
