@@ -36,22 +36,11 @@
 # Regular planets - define farming districts
 # ----
 
-district_farming = {
-	base_buildtime = @tier_1_buildtime
-	min_for_deposits_on_planet = @generic_district_min_number_on_planet	
-	max_for_deposits_on_planet = @generic_district_max_number_on_planet
-	
-	show_on_uncolonized = {
-		has_district_farming = yes
-		OR = {
-			uses_district_set = standard
-			uses_district_set = hive_world
-			uses_district_set = machine_world
-		}
-	}
+district_farming_tier_2 = {
+	base_buildtime = @tier_2_buildtime
 	
 	potential = {
-		has_district_farming = yes
+		has_tier_2_district_farming = yes # TODO add the trigger!
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
@@ -63,18 +52,21 @@ district_farming = {
 	
 	conversion_ratio = 1
 	convert_to = {
+		district_farming
 		district_farming_uncapped
+		district_farming_uncapped_tier_2
 		district_hydroponic_bay
-		district_farming_tier_2
+		district_hydroponic_bay_tier_2
+		# TODO add tier 3 here
 	}
 		
 	resources = {
 		category = planet_districts
-		cost = { minerals = @tier_1_base_resource_build_cost }
-		upkeep = { energy = @tier_1_base_resource_upkeep }		
+		cost = { minerals = @tier_2_base_resource_build_cost }
+		upkeep = { energy = @tier_2_base_resource_upkeep }		
 	}
 
-	planet_modifier = { planet_housing_add = @tier_1_base_housing }
+	planet_modifier = { planet_housing_add = @tier_2_base_housing }
 
 	triggered_planet_modifier = {
 		potential = {
@@ -98,7 +90,7 @@ district_farming = {
 			exists = owner
 			owner = { is_gestalt = yes }
 		}
-		modifier = { job_agri_drone_add = @tier_1_base_job_count	}
+		modifier = { job_agri_drone_add = @tier_2_base_job_count }
 	}		
 	triggered_planet_modifier = {
 		potential = {
@@ -108,14 +100,14 @@ district_farming = {
 				is_fallen_empire_spiritualist = no
 			}
 		}
-		modifier = { job_farmer_add = @tier_1_base_job_count	}
+		modifier = { job_farmer_add = @tier_2_base_job_count }
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			owner = { is_fallen_empire_spiritualist = yes }
 		}
-		modifier = { job_fe_acolyte_farm_add = @tier_1_base_job_count }
+		modifier = { job_fe_acolyte_farm_add = @tier_2_base_job_count }
 	}
 	triggered_planet_modifier = {
 		potential = {
@@ -211,23 +203,12 @@ district_farming = {
 	}
 }
 
-district_farming_uncapped = {
-	base_buildtime = @tier_1_buildtime
+district_farming_uncapped_tier_2 = {
+	base_buildtime = @tier_2_buildtime
 	is_capped_by_modifier = no
-	min_for_deposits_on_planet = @generic_district_min_number_on_planet	
-	max_for_deposits_on_planet = @generic_district_max_number_on_planet
-	
-	show_on_uncolonized = {
-		has_district_farming = yes
-		OR = {
-			uses_district_set = standard
-			uses_district_set = hive_world
-			uses_district_set = machine_world
-		}
-	}
-	
+
 	potential = {
-		has_district_farming = yes
+		has_tier_2_district_farming = yes # TODO add the trigger!
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
@@ -240,17 +221,19 @@ district_farming_uncapped = {
 	conversion_ratio = 1
 	convert_to = {
 		district_farming
+		district_farming_uncapped
 		district_hydroponic_bay
-		district_farming_uncapped_tier_2
+		district_hydroponic_bay_tier_2
+		# TODO add tier 3 here
 	}
 		
 	resources = {
 		category = planet_districts
-		cost = { minerals = @tier_1_base_resource_build_cost }
-		upkeep = { energy = @tier_1_base_resource_upkeep }
+		cost = { minerals = @tier_2_base_resource_build_cost }
+		upkeep = { energy = @tier_2_base_resource_upkeep }
 	}
 
-	planet_modifier = { planet_housing_add = @tier_1_base_housing }
+	planet_modifier = { planet_housing_add = @tier_2_base_housing }
 	
 	triggered_planet_modifier = {
 		potential = {
@@ -274,7 +257,7 @@ district_farming_uncapped = {
 			exists = owner
 			owner = { is_gestalt = yes }
 		}
-		modifier = { job_agri_drone_add = @tier_1_base_job_count	}
+		modifier = { job_agri_drone_add = @tier_2_base_job_count	}
 	}		
 	triggered_planet_modifier = {
 		potential = {
@@ -284,14 +267,14 @@ district_farming_uncapped = {
 				is_fallen_empire_spiritualist = no
 			}
 		}
-		modifier = { job_farmer_add = @tier_1_base_job_count	}
+		modifier = { job_farmer_add = @tier_2_base_job_count }
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			owner = { is_fallen_empire_spiritualist = yes }
 		}
-		modifier = { job_fe_acolyte_farm_add = @tier_1_base_job_count }
+		modifier = { job_fe_acolyte_farm_add = @tier_2_base_job_count }
 	}	
 	triggered_planet_modifier = {
 		potential = {
@@ -387,23 +370,15 @@ district_farming_uncapped = {
 	}
 }
 
-district_hydroponic_bay = {
-	base_buildtime = @tier_1_buildtime
+district_hydroponic_bay_tier_2 = {
+	base_buildtime = @tier_2_buildtime
 	is_capped_by_modifier = no
 	min_for_deposits_on_planet = @generic_district_min_number_on_planet	
 	max_for_deposits_on_planet = @generic_district_max_number_on_planet
-
-	show_on_uncolonized = {
-		has_district_hydroponic_bay = yes
-		OR = {
-			uses_district_set = standard
-			uses_district_set = hive_world
-			uses_district_set = machine_world
-		}
-	}
 	
 	potential = {
 		has_district_hydroponic_bay = yes
+		has_tier_2_district_farming = yes
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
@@ -416,18 +391,21 @@ district_hydroponic_bay = {
 	conversion_ratio = 1
 	convert_to = {
 		district_farming
+		district_farming_tier_2
 		district_farming_uncapped
-		# TODO add tier 2 here
+		district_farming_uncapped_tier_2
+		district_hydroponic_bay
+		# TODO add tier 3 here
 	}
 		
 	resources = {
 		category = planet_districts
-		cost = { minerals = @tier_1_base_resource_build_cost }
-		upkeep = { energy = @tier_1_base_resource_upkeep }
+		cost = { minerals = @tier_2_base_resource_build_cost }
+		upkeep = { energy = @tier_2_base_resource_upkeep }
 	}	
 	
 	planet_modifier = {
-		planet_housing_add = @tier_1_base_housing
+		planet_housing_add = @tier_2_base_housing
 	}
 	
 	triggered_planet_modifier = {
@@ -452,7 +430,7 @@ district_hydroponic_bay = {
 			exists = owner
 			owner = { is_gestalt = yes }
 		}
-		modifier = { job_agri_drone_add = @tier_1_base_job_count }
+		modifier = { job_agri_drone_add = @tier_2_base_job_count }
 	}		
 	triggered_planet_modifier = {
 		potential = {
@@ -462,14 +440,14 @@ district_hydroponic_bay = {
 				is_fallen_empire_spiritualist = no
 			}
 		}
-		modifier = { job_farmer_add = @tier_1_base_job_count }
+		modifier = { job_farmer_add = @tier_2_base_job_count }
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			owner = { is_fallen_empire_spiritualist = yes }
 		}
-		modifier = { job_fe_acolyte_farm_add = @tier_1_base_job_count }
+		modifier = { job_fe_acolyte_farm_add = @tier_2_base_job_count }
 	}	
 	triggered_planet_modifier = {
 		potential = {
