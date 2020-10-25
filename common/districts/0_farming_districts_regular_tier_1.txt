@@ -1,0 +1,566 @@
+# These constants are in each file in the /districts folder. Changing any of the constants in one file doesn't affect the others.
+# ----
+# Build cost of the 3 tiers of generic districts.
+@tier_1_base_resource_build_cost = 300
+@tier_2_base_resource_build_cost = 550
+@tier_3_base_resource_build_cost = 1200
+
+# Build time of the 3 tiers of generic districts.
+@tier_1_buildtime = 240
+@tier_2_buildtime = 500
+@tier_3_buildtime = 1000
+
+# Upkeep of the 3 tiers of generic districts.
+@tier_1_base_resource_upkeep = 1
+@tier_2_base_resource_upkeep = 7
+@tier_3_base_resource_upkeep = 15
+@tier_2_special_resource_upkeep = 1
+@tier_3_special_resource_upkeep = 3
+
+# Number of base housing and job count of the 3 tiers of generic districts.
+@tier_1_base_housing = 1
+@tier_2_base_housing = 3
+@tier_3_base_housing = 6
+@tier_1_base_job_count = 3
+@tier_2_base_job_count = 6
+@tier_2_base_job_count = 10
+
+# Min-max number of districts for planet generation.
+@generic_district_min_number_on_planet = 6
+@generic_district_max_number_on_planet = 20
+@special_district_min_number_on_planet = 2
+@special_district_max_number_on_planet = 5
+# ----
+
+# ----
+# Regular planets - define farming districts
+# ----
+
+district_farming = {
+	base_buildtime = @tier_1_buildtime
+	min_for_deposits_on_planet = @generic_district_min_number_on_planet	
+	max_for_deposits_on_planet = @generic_district_max_number_on_planet
+	
+	show_on_uncolonized = {
+		has_district_farming = yes
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	potential = {
+		has_district_farming = yes
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	allow = { production_district_allowed = yes }
+	
+	conversion_ratio = 1
+	convert_to = {
+		district_farming_uncapped
+		district_hydroponic_bay
+		district_farming_tier_2
+	}
+		
+	resources = {
+		category = planet_districts
+		cost = { minerals = @tier_1_base_resource_build_cost }
+		upkeep = { energy = @tier_1_base_resource_upkeep }		
+	}
+
+	planet_modifier = { planet_housing_add = @tier_1_base_housing }
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_agrarian_idyll }
+		}
+		modifier = { planet_housing_add = 1 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				has_technology = tech_housing_agrarian_idyll 
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = { planet_housing_add = 1 }
+	}			
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = { job_agri_drone_add = @tier_1_base_job_count	}
+	}		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = { job_farmer_add = @tier_1_base_job_count	}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = { job_fe_acolyte_farm_add = @tier_1_base_job_count }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_policy_flag = do_rural_housing }
+		}
+		modifier = { planet_housing_add = 2 }
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_agri_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_farmer_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_farm_effect_desc
+	}
+	
+	prerequisites = {
+		tech_industrial_farming
+	}
+	
+	ai_weight = { 
+		weight = 1
+		# Is there a negative income?
+		modifier = {
+			factor = 17
+			need_food = yes
+		}
+		modifier = {
+			factor = 1.5
+			low_food_storage = yes
+		}
+		# Does the country have a bad food economy?
+		modifier = {
+			factor = 2
+			bad_food_economy = yes
+		}
+		# Workers looking for work
+		modifier = {
+			factor = 5
+			has_unemployed_workers = yes
+		}
+		# No one to work it anyway
+		modifier = {
+			factor = 0
+			AND = {
+				free_jobs > 1
+				has_unemployed_workers = no
+			}
+		}
+		# To much food already / doesn't use food
+		modifier = {
+			factor = 0
+			food_not_needed = yes
+		}
+		# Wrong Colony Type
+		modifier = {
+			factor = 0.1
+			NOT = {
+				OR = {
+					has_designation = farming
+					has_designation = col_rural
+					has_designation = col_rural_gestalt
+				}
+			}
+		}
+	}
+	ai_resource_production = {
+		food = 2
+		trigger = {
+			OR = {
+				low_food_income = yes
+				medium_food_income = yes
+			}
+		}
+	}
+}
+
+district_farming_uncapped = {
+	base_buildtime = @tier_1_buildtime
+	is_capped_by_modifier = no
+	min_for_deposits_on_planet = @generic_district_min_number_on_planet	
+	max_for_deposits_on_planet = @generic_district_max_number_on_planet
+	
+	show_on_uncolonized = {
+		has_district_farming = yes
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	potential = {
+		has_district_farming = yes
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	allow = { production_district_allowed = yes }
+	
+	conversion_ratio = 1
+	convert_to = {
+		district_farming
+		district_hydroponic_bay
+		district_farming_uncapped_tier_2
+	}
+		
+	resources = {
+		category = planet_districts
+		cost = { minerals = @tier_1_base_resource_build_cost }
+		upkeep = { energy = @tier_1_base_resource_upkeep }
+	}
+
+	planet_modifier = { planet_housing_add = @tier_1_base_housing }
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_agrarian_idyll }
+		}
+		modifier = { planet_housing_add = 1 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				has_technology = tech_housing_agrarian_idyll 
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = { planet_housing_add = 1 }
+	}			
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = { job_agri_drone_add = @tier_1_base_job_count	}
+	}		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = { job_farmer_add = @tier_1_base_job_count	}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = { job_fe_acolyte_farm_add = @tier_1_base_job_count }
+	}	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_policy_flag = do_rural_housing }
+		}
+		modifier = { planet_housing_add = 2 }
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_agri_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_farmer_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_farm_effect_desc
+	}
+	
+	prerequisites = {
+		tech_industrial_farming
+	}
+	
+	ai_weight = { 
+		weight = 1
+		# Is there a negative income?
+		modifier = {
+			factor = 17
+			need_food = yes
+		}
+		modifier = {
+			factor = 1.5
+			low_food_storage = yes
+		}
+		# Does the country have a bad food economy?
+		modifier = {
+			factor = 2
+			bad_food_economy = yes
+		}
+		# Workers looking for work
+		modifier = {
+			factor = 5
+			has_unemployed_workers = yes
+		}
+		# No one to work it anyway
+		modifier = {
+			factor = 0
+			AND = {
+				free_jobs > 1
+				has_unemployed_workers = no
+			}
+		}
+		# To much food already / doesn't use food
+		modifier = {
+			factor = 0
+			food_not_needed = yes
+		}
+		# Wrong Colony Type
+		modifier = {
+			factor = 0.1
+			NOT = {
+				OR = {
+					has_designation = farming
+					has_designation = col_rural
+					has_designation = col_rural_gestalt
+				}
+			}
+		}
+	}
+	ai_resource_production = {
+		food = 2
+		trigger = {
+			OR = {
+				low_food_income = yes
+				medium_food_income = yes
+			}
+		}
+	}
+}
+
+district_hydroponic_bay = {
+	base_buildtime = @tier_1_buildtime
+	is_capped_by_modifier = no
+	min_for_deposits_on_planet = @generic_district_min_number_on_planet	
+	max_for_deposits_on_planet = @generic_district_max_number_on_planet
+
+	show_on_uncolonized = {
+		has_district_hydroponic_bay = yes
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	potential = {
+		has_district_hydroponic_bay = yes
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+	
+	allow = { production_district_allowed = yes }
+	
+	conversion_ratio = 1
+	convert_to = {
+		district_farming
+		district_farming_uncapped
+		# TODO add tier 2 here
+	}
+		
+	resources = {
+		category = planet_districts
+		cost = { minerals = @tier_1_base_resource_build_cost }
+		upkeep = { energy = @tier_1_base_resource_upkeep }
+	}	
+	
+	planet_modifier = {
+		planet_housing_add = @tier_1_base_housing
+	}
+	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_valid_civic = civic_agrarian_idyll }
+		}
+		modifier = { planet_housing_add = 1 }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				has_technology = tech_housing_agrarian_idyll 
+				has_valid_civic = civic_agrarian_idyll
+			}
+		}
+		modifier = { planet_housing_add = 1 }
+	}			
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		modifier = { job_agri_drone_add = @tier_1_base_job_count }
+	}		
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		modifier = { job_farmer_add = @tier_1_base_job_count }
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		modifier = { job_fe_acolyte_farm_add = @tier_1_base_job_count }
+	}	
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_policy_flag = do_rural_housing }
+		}
+		modifier = { planet_housing_add = 2 }
+	}
+
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_gestalt = yes }
+		}
+		text = job_agri_drone_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { 
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+		}
+		text = job_farmer_effect_desc
+	}
+	triggered_desc = {
+		trigger = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+		}
+		text = job_fe_acolyte_farm_effect_desc
+	}
+	
+	prerequisites = {
+		tech_industrial_farming
+	}
+	
+	ai_weight = { 
+		weight = 1
+		# Is there a negative income?
+		modifier = {
+			factor = 17
+			need_food = yes
+		}
+		modifier = {
+			factor = 1.5
+			low_food_storage = yes
+		}
+		# Does the country have a bad food economy?
+		modifier = {
+			factor = 2
+			bad_food_economy = yes
+		}
+		# Workers looking for work
+		modifier = {
+			factor = 5
+			has_unemployed_workers = yes
+		}
+		# No one to work it anyway
+		modifier = {
+			factor = 0
+			AND = {
+				free_jobs > 1
+				has_unemployed_workers = no
+			}
+		}
+		# To much food already / doesn't use food
+		modifier = {
+			factor = 0
+			food_not_needed = yes
+		}
+		# Wrong Colony Type
+		modifier = {
+			factor = 0.1
+			NOT = {
+				OR = {
+					has_designation = farming
+					has_designation = col_rural
+					has_designation = col_rural_gestalt
+				}
+			}
+		}
+	}
+	ai_resource_production = {
+		food = 2
+		trigger = {
+			OR = {
+				low_food_income = yes
+				medium_food_income = yes
+			}
+		}
+	}
+}
