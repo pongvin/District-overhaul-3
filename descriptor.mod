@@ -8,6 +8,6 @@ tags={
 	"Technologies"
 	"Total Conversion"
 }
-name=" District Overhaul 3"
+name="District Overhaul 3"
 picture="thumbnail.png"
 supported_version="2.7.*"
