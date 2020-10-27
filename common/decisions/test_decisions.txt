@@ -1,4 +1,68 @@
-test_decision_tier_2 = {
+test_decision_tier_2_farming = {
+	owned_planets_only = yes
+	
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1
+		}
+	}
+	effect = {
+		hidden_effect = {
+			set_planet_flag = tier_2_farming
+		}
+	}
+}
+
+test_decision_tier_3_farming = {
+	owned_planets_only = yes
+	
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1
+		}
+	}
+	effect = {
+		hidden_effect = {
+			set_planet_flag = tier_3_farming
+		}
+	}
+}
+
+test_decision_tier_2_mining = {
+	owned_planets_only = yes
+	
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1
+		}
+	}
+	effect = {
+		hidden_effect = {
+			set_planet_flag = tier_2_mining
+		}
+	}
+}
+
+test_decision_tier_3_mining = {
+	owned_planets_only = yes
+	
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1
+		}
+	}
+	effect = {
+		hidden_effect = {
+			set_planet_flag = tier_3_mining
+		}
+	}
+}
+
+test_decision_tier_2_generator = {
 	owned_planets_only = yes
 	
 	resources = {
@@ -10,13 +74,11 @@ test_decision_tier_2 = {
 	effect = {
 		hidden_effect = {
 			set_planet_flag = tier_2_generator
-			set_planet_flag = tier_2_farming
-			set_planet_flag = tier_2_mining
 		}
 	}
 }
 
-test_decision_tier_3 = {
+test_decision_tier_3_generator = {
 	owned_planets_only = yes
 	
 	resources = {
@@ -28,8 +90,6 @@ test_decision_tier_3 = {
 	effect = {
 		hidden_effect = {
 			set_planet_flag = tier_3_generator
-			set_planet_flag = tier_3_farming
-			set_planet_flag = tier_3_mining
 		}
 	}
 }
