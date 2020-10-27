@@ -1,5 +1,5 @@
 # ----
-# Constants are additive, so tier 2 build cost is 500 and tier 3 is 1000
+# Constants are cumulative, for example tier 2 build cost is 500 and tier 3 is 1000
 # Build cost 
 @tier_1_base_cost = 240
 @tier_2_add_cost = 260
@@ -123,7 +123,7 @@ district_generator = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			planet = { has_planet_flag = tier_2_generator }
+			planet = { has_planet_flag = tier_3_generator }
 		}
 		planet_housing_add = @tier_3_add_housing
 	}
@@ -745,7 +745,6 @@ district_mining = {
 		}
 	}
 }
-
 district_farming = {
 	base_buildtime = 240
 
@@ -1137,7 +1136,6 @@ district_generator_uncapped = {
 		}
 	}
 }
-
 district_mining_uncapped = {
 	base_buildtime = 240
 	icon = district_mining
@@ -1310,7 +1308,6 @@ district_mining_uncapped = {
 		}
 	}
 }
-
 district_farming_uncapped = {
 	base_buildtime = 240
 	icon = district_farming
