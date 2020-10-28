@@ -1,0 +1,114 @@
+# ----
+# Constants are cumulative, for example tier 2 build cost is 500 and tier 3 is 1000
+# Build cost 
+@tier_1_base_cost = 500
+@tier_2_add_cost = 500
+
+# Upkeep cost
+@tier_1_base_upkeep = 3
+@tier_2_add_upkeep = 4
+
+# Number of base housing and job count.
+@tier_1_base_housing = 2
+@tier_2_add_housing = 2
+@tier_1_base_count = 1
+@tier_2_add_job_count = 1
+# ----
+
+district_refinery = {
+	base_buildtime = 750
+	is_capped_by_modifier = no
+
+	potential = {
+		exists = owner
+		owner = { 
+            is_regular_empire = yes
+            # has_technology = # TODO tech here
+        }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+
+	allow = {
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+	}
+
+	resources = {
+		category = planet_districts
+
+		# Tier 1 cost
+		cost = {
+			minerals = @tier_1_base_cost
+		}
+		# Tier 2 cost
+		cost = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_refinery }
+			}
+			minerals = @tier_2_add_cost
+		}
+
+		# Tier 1 upkeep
+		upkeep = {
+			energy = @tier_1_base_upkeep
+		}
+		# Tier 2 upkeep
+		upkeep = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_refinery }
+			}
+			energy = @tier_2_add_upkeep
+		}
+	}
+
+	# Tiered housing
+	planet_modifier = {
+		planet_housing_add = @tier_1_base_housing
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			planet = { has_planet_flag = tier_2_refinery }
+		}
+		planet_housing_add = @tier_2_add_housing
+	}
+	# Tiered housing end
+
+	# Tiered jobs
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_fallen_empire = no
+			}
+		}
+		modifier = {
+			job_chemist_add = @tier_1_base_count
+            job_translucer_add = @tier_1_base_count
+            job_gas_refiner_add = @tier_1_base_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+				is_fallen_empire = no
+			}
+			planet = { has_planet_flag = tier_2_refinery }
+		}
+		modifier = {
+			job_chemist_add = @tier_2_add_job_count
+            job_translucer_add = @tier_2_add_job_count
+            job_gas_refiner_add = @tier_2_add_job_count
+		}
+	}
+	# Tiered jobs end
+}
