@@ -95,18 +95,6 @@ district_generator = {
 		}
 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_valid_civic = civic_agrarian_idyll
-			}
-		}
-		modifier = {
-			planet_housing_add = 1
-		}
-	}
-
 	# Tier 1 housing
 	planet_modifier = {
 		planet_housing_add = @tier_1_base_housing
@@ -747,9 +735,8 @@ district_mining = {
 }
 district_farming = {
 	base_buildtime = 240
-
-	min_for_deposits_on_planet = 3
-	max_for_deposits_on_planet = 15
+	min_for_deposits_on_planet = @generic_district_min_number_on_planet
+	max_for_deposits_on_planet = @generic_district_max_number_on_planet
 
 	show_on_uncolonized = {
 		uses_district_set = standard
@@ -770,16 +757,49 @@ district_farming = {
 
 	resources = {
 		category = planet_districts
-		cost = {
-			minerals = @base_cost
-		}
-		upkeep = {
-			energy = 1
-		}
-	}
 
-	planet_modifier = {
-		planet_housing_add = 2
+		# Tier 1 cost
+		cost = {
+			minerals = @tier_1_base_cost
+		}
+		# Tier 2 cost
+		cost = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_farming }
+			}
+			minerals = @tier_2_add_cost
+		}
+		# Tier 3 cost
+		cost = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_3_farming }
+			}
+			minerals = @tier_3_add_cost
+		}
+
+		# Tier 1 upkeep
+		upkeep = {
+			energy = @tier_1_base_upkeep
+		}
+		# Tier 2 upkeep
+		upkeep = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_farming }
+			}
+			energy = @tier_2_add_upkeep
+		}
+		# Tier 3 upkeep
+		upkeep = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_3_farming }
+			}
+			energy = @tier_3_add_upkeep
+			volatile_motes = @tier_3_strategic_resource_upkeep
+		}
 	}
 
 	triggered_planet_modifier = {
@@ -807,27 +827,28 @@ district_farming = {
 		}
 	}
 
+	# Tier 1 housing
+	planet_modifier = {
+		planet_housing_add = @tier_1_base_housing
+	}
+	# Tier 2 housing
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_hive_empire = yes }
+			planet = { has_planet_flag = tier_2_farming }
 		}
-		modifier = {
-			job_agri_drone_add = 3
-		}
+		planet_housing_add = @tier_2_add_housing
 	}
-
+	# Tier 3 housing
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_machine_empire = yes }
+			planet = { has_planet_flag = tier_3_farming }
 		}
-		modifier = {
-			job_agri_drone_add = 2
-			planet_housing_add = 1
-		}
+		planet_housing_add = @tier_3_add_housing
 	}
 
+	# Tier 1 job count
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -837,17 +858,124 @@ district_farming = {
 			}
 		}
 		modifier = {
-			job_farmer_add = 2
+			job_farmer_add = @tier_1_base_count
 		}
 	}
-
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_agri_drone_add = @tier_1_base_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_agri_drone_add = @tier_1_base_count
+		}
+	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			owner = { is_fallen_empire_spiritualist = yes }
 		}
 		modifier = {
-			job_fe_acolyte_farm_add = 2
+			job_fe_acolyte_farm_add = @tier_1_base_count
+		}
+	}
+
+	# Tier 2 job count
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+			planet = { has_planet_flag = tier_2_farming }
+		}
+		modifier = {
+			job_farmer_add = @tier_2_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			planet = { has_planet_flag = tier_2_farming }
+		}
+		modifier = {
+			job_agri_drone_add = @tier_2_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+			planet = { has_planet_flag = tier_2_farming }
+		}
+		modifier = {
+			job_agri_drone_add = @tier_2_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+			planet = { has_planet_flag = tier_2_farming }
+		}
+		modifier = {
+			job_fe_acolyte_farm_add = @tier_2_add_job_count
+		}
+	}
+
+	# Tier 3 job count
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+			planet = { has_planet_flag = tier_3_farming }
+		}
+		modifier = {
+			job_farmer_add = @tier_3_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			planet = { has_planet_flag = tier_3_farming }
+		}
+		modifier = {
+			job_agri_drone_add = @tier_3_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+			planet = { has_planet_flag = tier_3_farming }
+		}
+		modifier = {
+			job_agri_drone_add = @tier_3_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+			planet = { has_planet_flag = tier_3_farming }
+		}
+		modifier = {
+			job_fe_acolyte_farm_add = @tier_3_add_job_count
 		}
 	}
 
@@ -1004,51 +1132,73 @@ district_generator_uncapped = {
 
 	resources = {
 		category = planet_districts
+
+		# Tier 1 cost
 		cost = {
-			minerals = @base_cost
+			minerals = @tier_1_base_cost
 		}
-		upkeep = {
-			energy = 1
-		}
-	}
-
-	planet_modifier = {
-		planet_housing_add = 2
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_valid_civic = civic_agrarian_idyll
+		# Tier 2 cost
+		cost = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_generator }
 			}
+			minerals = @tier_2_add_cost
 		}
-		modifier = {
-			planet_housing_add = 1
+		# Tier 3 cost
+		cost = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_3_generator }
+			}
+			minerals = @tier_3_add_cost
+		}
+
+		# Tier 1 upkeep
+		upkeep = {
+			energy = @tier_1_base_upkeep
+		}
+		# Tier 2 upkeep
+		upkeep = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_generator }
+			}
+			energy = @tier_2_add_upkeep
+		}
+		# Tier 3 upkeep
+		upkeep = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_3_generator }
+			}
+			energy = @tier_3_add_upkeep
+			exotic_gases = @tier_3_strategic_resource_upkeep
 		}
 	}
 
+	# Tier 1 housing
+	planet_modifier = {
+		planet_housing_add = @tier_1_base_housing
+	}
+	# Tier 2 housing
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_hive_empire = yes }
+			planet = { has_planet_flag = tier_2_generator }
 		}
-		modifier = {
-			job_technician_drone_add = 3
-		}
+		planet_housing_add = @tier_2_add_housing
 	}
-
+	# Tier 3 housing
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_machine_empire = yes }
+			planet = { has_planet_flag = tier_3_generator }
 		}
-		modifier = {
-			job_technician_drone_add = 2
-			planet_housing_add = 1
-		}
+		planet_housing_add = @tier_3_add_housing
 	}
 
+	# Tier 1 job count
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -1058,17 +1208,124 @@ district_generator_uncapped = {
 			}
 		}
 		modifier = {
-			job_technician_add = 2
+			job_technician_add = @tier_1_base_count
 		}
 	}
-
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_technician_drone_add = @tier_1_base_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_technician_drone_add = @tier_1_base_count
+		}
+	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			owner = { is_fallen_empire_spiritualist = yes }
 		}
 		modifier = {
-			job_fe_acolyte_generator_add = 2
+			job_fe_acolyte_generator_add = @tier_1_base_count
+		}
+	}
+
+	# Tier 2 job count
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+			planet = { has_planet_flag = tier_2_generator }
+		}
+		modifier = {
+			job_technician_add = @tier_2_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			planet = { has_planet_flag = tier_2_generator }
+		}
+		modifier = {
+			job_technician_drone_add = @tier_2_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+			planet = { has_planet_flag = tier_2_generator }
+		}
+		modifier = {
+			job_technician_drone_add = @tier_2_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+			planet = { has_planet_flag = tier_2_generator }
+		}
+		modifier = {
+			job_fe_acolyte_generator_add = @tier_2_add_job_count
+		}
+	}
+
+	# Tier 3 job count
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+			planet = { has_planet_flag = tier_3_generator }
+		}
+		modifier = {
+			job_technician_add = @tier_3_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			planet = { has_planet_flag = tier_3_generator }
+		}
+		modifier = {
+			job_technician_drone_add = @tier_3_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+			planet = { has_planet_flag = tier_3_generator }
+		}
+		modifier = {
+			job_technician_drone_add = @tier_3_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+			planet = { has_planet_flag = tier_3_generator }
+		}
+		modifier = {
+			job_fe_acolyte_generator_add = @tier_3_add_job_count
 		}
 	}
 
@@ -1095,6 +1352,10 @@ district_generator_uncapped = {
 			owner = { is_fallen_empire_spiritualist = yes }
 		}
 		text = job_fe_acolyte_generator_effect_desc
+	}
+
+	prerequisites = {
+		tech_power_plant_1
 	}
 
 	ai_weight = {
@@ -1166,51 +1427,73 @@ district_mining_uncapped = {
 
 	resources = {
 		category = planet_districts
+
+		# Tier 1 cost
 		cost = {
-			minerals = @base_cost
+			minerals = @tier_1_base_cost
 		}
-		upkeep = {
-			energy = 1
-		}
-	}
-
-	planet_modifier = {
-		planet_housing_add = 2
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = {
-				has_valid_civic = civic_agrarian_idyll
+		# Tier 2 cost
+		cost = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_mining }
 			}
+			minerals = @tier_2_add_cost
 		}
-		modifier = {
-			planet_housing_add = 1
+		# Tier 3 cost
+		cost = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_3_mining }
+			}
+			minerals = @tier_3_add_cost
+		}
+
+		# Tier 1 upkeep
+		upkeep = {
+			energy = @tier_1_base_upkeep
+		}
+		# Tier 2 upkeep
+		upkeep = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_mining }
+			}
+			energy = @tier_2_add_upkeep
+		}
+		# Tier 3 upkeep
+		upkeep = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_3_mining }
+			}
+			energy = @tier_3_add_upkeep
+			rare_crystals = @tier_3_strategic_resource_upkeep
 		}
 	}
 
+	# Tier 1 housing
+	planet_modifier = {
+		planet_housing_add = @tier_1_base_housing
+	}
+	# Tier 2 housing
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_hive_empire = yes }
+			planet = { has_planet_flag = tier_2_mining }
 		}
-		modifier = {
-			job_mining_drone_add = 3
-		}
+		planet_housing_add = @tier_2_add_housing
 	}
-
+	# Tier 3 housing
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = { is_machine_empire = yes }
+			planet = { has_planet_flag = tier_3_mining }
 		}
-		modifier = {
-			job_mining_drone_add = 2
-			planet_housing_add = 1
-		}
+		planet_housing_add = @tier_3_add_housing
 	}
 
+	# Tier 1 job count
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -1220,17 +1503,124 @@ district_mining_uncapped = {
 			}
 		}
 		modifier = {
-			job_miner_add = 2
+			job_miner_add = @tier_1_base_count
 		}
 	}
-
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_mining_drone_add = @tier_1_base_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_mining_drone_add = @tier_1_base_count
+		}
+	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			owner = { is_fallen_empire_spiritualist = yes }
 		}
 		modifier = {
-			job_fe_acolyte_mine_add = 2
+			job_fe_acolyte_mine_add = @tier_1_base_count
+		}
+	}
+
+	# Tier 2 job count
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+			planet = { has_planet_flag = tier_2_mining }
+		}
+		modifier = {
+			job_miner_add = @tier_2_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			planet = { has_planet_flag = tier_2_mining }
+		}
+		modifier = {
+			job_mining_drone_add = @tier_2_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+			planet = { has_planet_flag = tier_2_mining }
+		}
+		modifier = {
+			job_mining_drone_add = @tier_2_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+			planet = { has_planet_flag = tier_2_generator }
+		}
+		modifier = {
+			job_fe_acolyte_mine_add = @tier_2_add_job_count
+		}
+	}
+
+	# Tier 3 job count
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+			planet = { has_planet_flag = tier_3_mining }
+		}
+		modifier = {
+			job_miner_add = @tier_3_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			planet = { has_planet_flag = tier_3_mining }
+		}
+		modifier = {
+			job_mining_drone_add = @tier_3_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+			planet = { has_planet_flag = tier_3_mining }
+		}
+		modifier = {
+			job_mining_drone_add = @tier_3_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+			planet = { has_planet_flag = tier_3_mining }
+		}
+		modifier = {
+			job_fe_acolyte_mine_add = @tier_3_add_job_count
 		}
 	}
 
@@ -1261,6 +1651,7 @@ district_mining_uncapped = {
 	}
 
 	prerequisites = {
+		tech_mechanized_mining
 	}
 
 	ai_weight = {
@@ -1328,64 +1719,73 @@ district_farming_uncapped = {
 
 	resources = {
 		category = planet_districts
+
+		# Tier 1 cost
 		cost = {
-			minerals = @base_cost
+			minerals = @tier_1_base_cost
 		}
+		# Tier 2 cost
+		cost = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_farming }
+			}
+			minerals = @tier_2_add_cost
+		}
+		# Tier 3 cost
+		cost = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_3_farming }
+			}
+			minerals = @tier_3_add_cost
+		}
+
+		# Tier 1 upkeep
 		upkeep = {
-			energy = 1
+			energy = @tier_1_base_upkeep
+		}
+		# Tier 2 upkeep
+		upkeep = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_farming }
+			}
+			energy = @tier_2_add_upkeep
+		}
+		# Tier 3 upkeep
+		upkeep = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_3_farming }
+			}
+			energy = @tier_3_add_upkeep
+			volatile_motes = @tier_3_strategic_resource_upkeep
 		}
 	}
 
+	# Tier 1 housing
 	planet_modifier = {
-		planet_housing_add = 2
+		planet_housing_add = @tier_1_base_housing
 	}
-
+	# Tier 2 housing
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = {
-				has_valid_civic = civic_agrarian_idyll
-			}
+			planet = { has_planet_flag = tier_2_farming }
 		}
-		modifier = {
-			planet_housing_add = 1
-		}
+		planet_housing_add = @tier_2_add_housing
 	}
-
+	# Tier 3 housing
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			owner = {
-				has_technology = tech_housing_agrarian_idyll
-				has_valid_civic = civic_agrarian_idyll
-			}
+			planet = { has_planet_flag = tier_3_farming }
 		}
-		modifier = {
-			planet_housing_add = 1
-		}
+		planet_housing_add = @tier_3_add_housing
 	}
 
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_hive_empire = yes }
-		}
-		modifier = {
-			job_agri_drone_add = 3
-		}
-	}
-
-	triggered_planet_modifier = {
-		potential = {
-			exists = owner
-			owner = { is_machine_empire = yes }
-		}
-		modifier = {
-			job_agri_drone_add = 2
-			planet_housing_add = 1
-		}
-	}
-
+	# Tier 1 job count
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
@@ -1395,17 +1795,124 @@ district_farming_uncapped = {
 			}
 		}
 		modifier = {
-			job_farmer_add = 2
+			job_farmer_add = @tier_1_base_count
 		}
 	}
-
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+		}
+		modifier = {
+			job_agri_drone_add = @tier_1_base_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+		}
+		modifier = {
+			job_agri_drone_add = @tier_1_base_count
+		}
+	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			owner = { is_fallen_empire_spiritualist = yes }
 		}
 		modifier = {
-			job_fe_acolyte_farm_add = 2
+			job_fe_acolyte_farm_add = @tier_1_base_count
+		}
+	}
+
+	# Tier 2 job count
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+			planet = { has_planet_flag = tier_2_farming }
+		}
+		modifier = {
+			job_farmer_add = @tier_2_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			planet = { has_planet_flag = tier_2_farming }
+		}
+		modifier = {
+			job_agri_drone_add = @tier_2_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+			planet = { has_planet_flag = tier_2_farming }
+		}
+		modifier = {
+			job_agri_drone_add = @tier_2_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+			planet = { has_planet_flag = tier_2_farming }
+		}
+		modifier = {
+			job_fe_acolyte_farm_add = @tier_2_add_job_count
+		}
+	}
+
+	# Tier 3 job count
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_gestalt = no
+				is_fallen_empire_spiritualist = no
+			}
+			planet = { has_planet_flag = tier_3_farming }
+		}
+		modifier = {
+			job_farmer_add = @tier_3_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_hive_empire = yes }
+			planet = { has_planet_flag = tier_3_farming }
+		}
+		modifier = {
+			job_agri_drone_add = @tier_3_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_machine_empire = yes }
+			planet = { has_planet_flag = tier_3_farming }
+		}
+		modifier = {
+			job_agri_drone_add = @tier_3_add_job_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_fallen_empire_spiritualist = yes }
+			planet = { has_planet_flag = tier_3_farming }
+		}
+		modifier = {
+			job_fe_acolyte_farm_add = @tier_3_add_job_count
 		}
 	}
 
@@ -1432,6 +1939,10 @@ district_farming_uncapped = {
 			owner = { is_fallen_empire_spiritualist = yes }
 		}
 		text = job_fe_acolyte_farm_effect_desc
+	}
+
+	prerequisites = {
+		tech_industrial_farming
 	}
 
 	ai_weight = {
