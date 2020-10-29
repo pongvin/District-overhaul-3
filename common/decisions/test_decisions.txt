@@ -1,6 +1,6 @@
-test_decision_tier_2_farming = {
+decision_tier_2_farming = {
 	owned_planets_only = yes
-	
+
 	resources = {
 		category = decisions
 		cost = {
@@ -9,12 +9,14 @@ test_decision_tier_2_farming = {
 	}
 	effect = {
 		hidden_effect = {
-			set_planet_flag = tier_2_farming
+			planet = {
+				set_planet_flag = tier_2_farming
+			}
 		}
 	}
 }
 
-test_decision_tier_3_farming = {
+decision_tier_3_farming = {
 	owned_planets_only = yes
 	
 	resources = {
@@ -30,7 +32,7 @@ test_decision_tier_3_farming = {
 	}
 }
 
-test_decision_tier_2_mining = {
+decision_tier_2_mining = {
 	owned_planets_only = yes
 	
 	resources = {
@@ -46,7 +48,7 @@ test_decision_tier_2_mining = {
 	}
 }
 
-test_decision_tier_3_mining = {
+decision_tier_3_mining = {
 	owned_planets_only = yes
 	
 	resources = {
@@ -62,7 +64,7 @@ test_decision_tier_3_mining = {
 	}
 }
 
-test_decision_tier_2_generator = {
+decision_tier_2_generator = {
 	owned_planets_only = yes
 	
 	resources = {
@@ -78,7 +80,7 @@ test_decision_tier_2_generator = {
 	}
 }
 
-test_decision_tier_3_generator = {
+decision_tier_3_generator = {
 	owned_planets_only = yes
 	
 	resources = {
@@ -94,7 +96,7 @@ test_decision_tier_3_generator = {
 	}
 }
 
-test_decision_tier_2_housing = {
+decision_tier_2_housing = {
 	owned_planets_only = yes
 	
 	resources = {
@@ -110,7 +112,7 @@ test_decision_tier_2_housing = {
 	}
 }
 
-test_decision_tier_3_housing = {
+decision_tier_3_housing = {
 	owned_planets_only = yes
 	
 	resources = {
@@ -122,6 +124,60 @@ test_decision_tier_3_housing = {
 	effect = {
 		hidden_effect = {
 			set_planet_flag = tier_3_housing
+		}
+	}
+}
+
+decision_tier_2_refinery = {
+	owned_planets_only = yes
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1
+		}
+	}
+	effect = {
+		hidden_effect = {
+			planet = {
+				set_planet_flag = tier_2_refinery
+			}
+		}
+	}
+}
+
+decision_tier_2_bureaucratic = {
+	owned_planets_only = yes
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1
+		}
+	}
+	effect = {
+		hidden_effect = {
+			planet = {
+				set_planet_flag = tier_2_bureaucratic
+			}
+		}
+	}
+}
+
+decision_tier_2_core = {
+	owned_planets_only = yes
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1
+		}
+	}
+	effect = {
+		hidden_effect = {
+			planet = {
+				set_planet_flag = tier_2_core
+			}
 		}
 	}
 }

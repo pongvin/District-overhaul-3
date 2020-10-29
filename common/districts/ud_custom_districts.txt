@@ -1,5 +1,5 @@
 # ----
-# Constants are cumulative, for example tier 2 build cost is 500 and tier 3 is 1000
+# Constants are cumulative, for example tier 1 build cost is 500 and tier 2 is 1000
 # Build cost 
 @tier_1_base_cost = 500
 @tier_2_add_cost = 500
@@ -11,18 +11,22 @@
 # Number of base housing and job count.
 @tier_1_base_housing = 2
 @tier_2_add_housing = 2
-@tier_1_base_count = 1
-@tier_2_add_job_count = 1
+@tier_1_refiner_count = 1
+@tier_2_add_add_refiner_count = 1
+@tier_1_bureaucrat_count = 3
+@tier_2_add_bureaucrat_count = 3
+@tier_2_add_administrator_count = 1
+@tier_1_space_engineer_count = 2
+@tier_2_add_space_engineer_count = 2
 # ----
 
 district_refinery = {
-	base_buildtime = 750
+	base_buildtime = 600
 	is_capped_by_modifier = no
 
 	potential = {
 		exists = owner
 		owner = { 
-            is_regular_empire = yes
             # has_technology = # TODO tech here
         }
 		OR = {
@@ -84,15 +88,272 @@ district_refinery = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
+		}
+		modifier = {
+			job_chemist_add = @tier_1_refiner_count
+            job_translucer_add = @tier_1_refiner_count
+            job_gas_refiner_add = @tier_1_refiner_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			planet = { has_planet_flag = tier_2_refinery }
+		}
+		modifier = {
+			job_chemist_add = @tier_2_add_add_refiner_count
+            job_translucer_add = @tier_2_add_add_refiner_count
+            job_gas_refiner_add = @tier_2_add_add_refiner_count
+		}
+	}
+	# Tiered jobs end
+}
+district_bureaucratic = {
+	base_buildtime = 600
+	is_capped_by_modifier = no
+
+	potential = {
+		exists = owner
+		owner = { 
+			is_regular_empire = yes
+            # has_technology = # TODO tech here
+        }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+
+	allow = {
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+	}
+
+	resources = {
+		category = planet_districts
+
+		# Tier 1 cost
+		cost = {
+			minerals = @tier_1_base_cost
+		}
+		# Tier 2 cost
+		cost = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_bureaucratic }
+			}
+			minerals = @tier_2_add_cost
+		}
+
+		# Tier 1 upkeep
+		upkeep = {
+			energy = @tier_1_base_upkeep
+		}
+		# Tier 2 upkeep
+		upkeep = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_bureaucratic }
+			}
+			energy = @tier_2_add_upkeep
+		}
+	}
+
+	# Tiered housing
+	planet_modifier = {
+		planet_housing_add = @tier_1_base_housing
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			planet = { has_planet_flag = tier_2_bureaucratic }
+		}
+		planet_housing_add = @tier_2_add_housing
+	}
+	# Tiered housing end
+
+	# Tiered jobs
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		modifier = {
+			job_bureaucrat_add = @tier_1_bureaucrat_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			planet = { has_planet_flag = tier_2_bureaucratic }
+		}
+		modifier = {
+			job_bureaucrat_add = @tier_2_add_bureaucrat_count
+			job_administrator_add = @tier_2_add_administrator_count
+		}
+	}
+	# Tiered jobs end
+}
+district_core = {
+	base_buildtime = 600
+	is_capped_by_modifier = no
+
+	potential = {
+		exists = owner
+		owner = { 
+			is_hive_empire = yes
+            # has_technology = # TODO tech here
+        }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+
+	allow = {
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+	}
+
+	resources = {
+		category = planet_districts
+
+		# Tier 1 cost
+		cost = {
+			minerals = @tier_1_base_cost
+		}
+		# Tier 2 cost
+		cost = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_core }
+			}
+			minerals = @tier_2_add_cost
+		}
+
+		# Tier 1 upkeep
+		upkeep = {
+			energy = @tier_1_base_upkeep
+		}
+		# Tier 2 upkeep
+		upkeep = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_core }
+			}
+			energy = @tier_2_add_upkeep
+		}
+	}
+
+	# Tiered housing
+	planet_modifier = {
+		planet_housing_add = @tier_1_base_housing
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			planet = { has_planet_flag = tier_2_core }
+		}
+		planet_housing_add = @tier_2_add_housing
+	}
+	# Tiered housing end
+
+	# Tiered jobs
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+		}
+		modifier = {
+			job_coordinator_add = @tier_1_bureaucrat_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			planet = { has_planet_flag = tier_2_core }
+		}
+		modifier = {
+			job_coordinator_add = @tier_2_add_bureaucrat_count
+			job_synapse_drone_add = @tier_2_add_administrator_count
+		}
+	}
+	# Tiered jobs end
+}
+district_space_elevator = {
+	base_buildtime = 600
+	is_capped_by_modifier = no
+
+	potential = {
+		exists = owner
+		owner = {
+            # has_technology = # TODO tech here
+        }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+
+	allow = {
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+	}
+
+	resources = {
+		category = planet_districts
+
+		# Tier 1 cost
+		cost = {
+			minerals = @tier_1_base_cost
+		}
+		# Tier 2 cost
+		cost = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_core }
+			}
+			minerals = @tier_2_add_cost
+		}
+
+		# Tier 1 upkeep
+		upkeep = {
+			energy = @tier_1_base_upkeep
+		}
+		# Tier 2 upkeep
+		upkeep = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_core }
+			}
+			energy = @tier_2_add_upkeep
+		}
+	}
+
+	# Tiered housing
+	planet_modifier = {
+		planet_housing_add = @tier_1_base_housing
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			planet = { has_planet_flag = tier_2_core }
+		}
+		planet_housing_add = @tier_2_add_housing
+	}
+	# Tiered housing end
+
+	# Tiered jobs
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
 			owner = {
 				is_regular_empire = yes
-				is_fallen_empire = no
 			}
 		}
 		modifier = {
-			job_chemist_add = @tier_1_base_count
-            job_translucer_add = @tier_1_base_count
-            job_gas_refiner_add = @tier_1_base_count
+			job_spaceengineer_bio_add = @tier_1_space_engineer_count
 		}
 	}
 	triggered_planet_modifier = {
@@ -100,14 +361,34 @@ district_refinery = {
 			exists = owner
 			owner = {
 				is_regular_empire = yes
-				is_fallen_empire = no
 			}
-			planet = { has_planet_flag = tier_2_refinery }
+			planet = { has_planet_flag = tier_2_core }
 		}
 		modifier = {
-			job_chemist_add = @tier_2_add_job_count
-            job_translucer_add = @tier_2_add_job_count
-            job_gas_refiner_add = @tier_2_add_job_count
+			job_spaceengineer_bio_add = @tier_2_add_space_engineer_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		modifier = {
+			job_spaceengineer_drone_add = @tier_1_space_engineer_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+			planet = { has_planet_flag = tier_2_core }
+		}
+		modifier = {
+			job_spaceengineer_drone_add = @tier_2_add_space_engineer_count
 		}
 	}
 	# Tiered jobs end

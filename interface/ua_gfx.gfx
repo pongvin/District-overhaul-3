@@ -1,0 +1,5 @@
+spriteTypes = {	
+	spriteType = {
+        name = "GFX_text_worker_produces_mult"
+        texturefile = "gfx/interface/icons/text_icons/job_spaceengineer.dds"
+    }
