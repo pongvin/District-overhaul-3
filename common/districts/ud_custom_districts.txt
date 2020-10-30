@@ -338,7 +338,7 @@ district_space_elevator = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			planet = { has_planet_flag = tier_2_core }
+			planet = { has_planet_flag = tier_2_space_elevator }
 		}
 		planet_housing_add = @tier_2_add_housing
 	}
@@ -362,7 +362,7 @@ district_space_elevator = {
 			owner = {
 				is_regular_empire = yes
 			}
-			planet = { has_planet_flag = tier_2_core }
+			planet = { has_planet_flag = tier_2_space_elevator }
 		}
 		modifier = {
 			job_spaceengineer_bio_add = @tier_2_add_space_engineer_count
@@ -385,7 +385,7 @@ district_space_elevator = {
 			owner = {
 				is_hive_empire = yes
 			}
-			planet = { has_planet_flag = tier_2_core }
+			planet = { has_planet_flag = tier_2_space_elevator }
 		}
 		modifier = {
 			job_spaceengineer_drone_add = @tier_2_add_space_engineer_count
@@ -425,7 +425,7 @@ district_research = {
 		cost = {
 			trigger = {
 				exists = owner
-				planet = { has_planet_flag = tier_2_core }
+				planet = { has_planet_flag = tier_2_research }
 			}
 			minerals = @tier_2_add_cost
 		}
@@ -438,7 +438,7 @@ district_research = {
 		upkeep = {
 			trigger = {
 				exists = owner
-				planet = { has_planet_flag = tier_2_core }
+				planet = { has_planet_flag = tier_2_research }
 			}
 			energy = @tier_2_add_upkeep
 		}
@@ -451,7 +451,7 @@ district_research = {
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
-			planet = { has_planet_flag = tier_2_core }
+			planet = { has_planet_flag = tier_2_research }
 		}
 		planet_housing_add = @tier_2_add_housing
 	}
@@ -475,7 +475,7 @@ district_research = {
 			owner = {
 				is_regular_empire = yes
 			}
-			planet = { has_planet_flag = tier_2_core }
+			planet = { has_planet_flag = tier_2_research }
 		}
 		modifier = {
 			job_researcher_add = @tier_2_add_space_engineer_count
@@ -498,7 +498,7 @@ district_research = {
 			owner = {
 				is_hive_empire = yes
 			}
-			planet = { has_planet_flag = tier_2_core }
+			planet = { has_planet_flag = tier_2_research }
 		}
 		modifier = {
 			job_brain_drone_add = @tier_2_add_space_engineer_count
