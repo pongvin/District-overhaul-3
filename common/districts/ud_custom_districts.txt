@@ -393,3 +393,120 @@ district_space_elevator = {
 	}
 	# Tiered jobs end
 }
+district_research = {
+	base_buildtime = 600
+	is_capped_by_modifier = no
+
+	potential = {
+		exists = owner
+		owner = {
+            # has_technology = # TODO tech here
+        }
+		OR = {
+			uses_district_set = standard
+			uses_district_set = hive_world
+			uses_district_set = machine_world
+		}
+	}
+
+	allow = {
+		NOT = { has_modifier = resort_colony }
+		NOT = { has_modifier = slave_colony }
+	}
+
+	resources = {
+		category = planet_districts
+
+		# Tier 1 cost
+		cost = {
+			minerals = @tier_1_base_cost
+		}
+		# Tier 2 cost
+		cost = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_core }
+			}
+			minerals = @tier_2_add_cost
+		}
+
+		# Tier 1 upkeep
+		upkeep = {
+			energy = @tier_1_base_upkeep
+		}
+		# Tier 2 upkeep
+		upkeep = {
+			trigger = {
+				exists = owner
+				planet = { has_planet_flag = tier_2_core }
+			}
+			energy = @tier_2_add_upkeep
+		}
+	}
+
+	# Tiered housing
+	planet_modifier = {
+		planet_housing_add = @tier_1_base_housing
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			planet = { has_planet_flag = tier_2_core }
+		}
+		planet_housing_add = @tier_2_add_housing
+	}
+	# Tiered housing end
+
+	# Tiered jobs
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+		}
+		modifier = {
+			job_researcher_add = @tier_1_space_engineer_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_regular_empire = yes
+			}
+			planet = { has_planet_flag = tier_2_core }
+		}
+		modifier = {
+			job_researcher_add = @tier_2_add_space_engineer_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+		}
+		modifier = {
+			job_brain_drone_add = @tier_1_space_engineer_count
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = {
+				is_hive_empire = yes
+			}
+			planet = { has_planet_flag = tier_2_core }
+		}
+		modifier = {
+			job_brain_drone_add = @tier_2_add_space_engineer_count
+		}
+	}
+	# Tiered jobs end
+}
+district_recreation = {
+}
+district_commerce = {
+}
