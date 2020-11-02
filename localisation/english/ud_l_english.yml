@@ -1,4 +1,12 @@
 ﻿l_english:
+# Jobs
+job_spaceengineer_bio:0 "Zero-gravity Engineer"
+job_spaceengineer_bio_desc:0 "Specialized engineers work tirelessly to operate the great space elevators - which in turn help field great armadas."
+job_spaceengineer_drone:0 "Zero-gravity Drone"
+job_spaceengineer_drone_desc:0 "Specialized drones work tirelessly to operate the great space elevators - which in turn help field great armadas."
 
-job_spaceengineer:0 "Consume World"
-job_spaceengineer_desc:0 "Consume World"
+# Modifiers
+mod_job_spaceengineer_bio_add:0 "Zero-gravity Engineer Jobs"
+mod_job_spaceengineer_bio_add_desc:0 "Specialized engineers work tirelessly to operate the great space elevators - which in turn help field great armadas."
+mod_job_spaceengineer_drone_add:0 "Zero-gravity Drone Jobs"
+mod_job_spaceengineer_drone_add_desc:0 "Specialized drones work tirelessly to operate the great space elevators - which in turn help field great armadas."
