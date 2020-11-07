@@ -1,13 +1,10 @@
-version="3.0.0"
+version="1.0.0"
 tags={
 	"Balance"
 	"Economy"
-	"Gameplay"
-	"Graphics"
 	"Overhaul"
 	"Technologies"
-	"Total Conversion"
 }
-name="District Overhaul 3"
+name="Upgradable districts & more"
 picture="thumbnail.png"
 supported_version="2.8.*"

@@ -1,4 +1,130 @@
 ﻿l_english:
+# Jobs
+job_spaceengineer_bio:0 "Zero-gravity Engineer"
+job_spaceengineer_bio_desc:0 "Specialized engineers work tirelessly to operate the great space elevators - which in turn help field great armadas."
+job_spaceengineer_drone:0 "Zero-gravity Drone"
+job_spaceengineer_drone_desc:0 "Specialized drones work tirelessly to operate the great space elevators - which in turn help field great armadas."
 
-job_spaceengineer:0 "Consume World"
-job_spaceengineer_desc:0 "Consume World"
+# Modifiers
+mod_job_spaceengineer_bio_add:0 "Zero-gravity Engineer Jobs"
+mod_job_spaceengineer_bio_add_desc:0 "Specialized engineers work tirelessly to operate the great space elevators - which in turn help field great armadas."
+mod_job_spaceengineer_drone_add:0 "Zero-gravity Drone Jobs"
+mod_job_spaceengineer_drone_add_desc:0 "Specialized drones work tirelessly to operate the great space elevators - which in turn help field great armadas."
+
+# Districts
+district_refinery:0 "Refinery District"
+district_refinery_plural:0 "Refinery Districts"
+district_refinery_desc:0 "Endless factories and chemical labs produce a wide range of exotic and advanced materials."
+
+district_bureaucratic:0 "Bureaucratic District"
+district_bureaucratic_plural:0 "Bureaucratic Districts"
+district_bureaucratic_desc:0 "Dedicated sector to accomodate the vast number of administrative workers needed to run the empire."
+
+district_core:0 "Core District"
+district_core_plural:0 "Core Districts"
+district_core_desc:0 "Dedicated sector to accomodate the vast number of administrative drones needed to run the empire."
+
+district_space_elevator:0 "Space Elevator District"
+district_space_elevator_plural:0 "Space Elevator Districts"
+district_space_elevator_desc:0 "A gigantic space elevator to help transfer resources to and from low orbit."
+
+district_research:0 "Research District"
+district_research_plural:0 "Research Districts"
+district_research_desc:0 "Science and innovation happens when great minds are working together in proximity for maximum cooperation."
+
+district_recreation:0 "Recreation District"
+district_recreation_plural:0 "Recreation Districts"
+district_recreation_desc:0 "Museums, theaters, nighclubs - all activities that the occupants of this planet could dream of can be found here."
+
+district_commerce:0 "Commerce District"
+district_commerce_plural:0 "Commerce Districts"
+district_commerce_desc:0 "Office hubs, the beating heart of trade and business."
+
+# Decisions
+decision_effect:0 "Increases £housing£§YHousing§! and £job£§YJobs§! for the district type."
+
+decision_tier_2_farming:0 "Efficient Agriculture Districts"
+decision_tier_2_farming_desc:0 "Planetary logistics project to utilize the available farmland as efficiently as possible."
+decision_tier_2_farming_requirements:0 "$TRIGGER_FAIL$§RAt least 4 agriculture districts are required."
+
+decision_tier_3_farming:0 "Ascended Agriculture Districts"
+decision_tier_3_farming_desc:0 "Precursor technology allows the construction of planetary scale vertical farming towers."
+decision_tier_3_farming_requirements:0 "$TRIGGER_FAIL$§RAt least 8 agriculture districts are required."
+
+decision_tier_2_mining:0 "Efficient Mining Districts"
+decision_tier_2_mining_desc:0 "Planetary logistics project to utilize the available natural resources as efficiently as possible."
+decision_tier_2_mining_requirements:0 "$TRIGGER_FAIL$§RAt least 4 mining districts are required."
+
+decision_tier_3_mining:0 "Ascended Mining Districts"
+decision_tier_3_mining_desc:0 "Precursor technology allows the creation of tools and extractor machines that the previous generation would have considered impossible."
+decision_tier_3_mining_requirements:0 "$TRIGGER_FAIL$§RAt least 8 mining districts are required."
+
+decision_tier_2_generator:0 "Efficient Generator Districts"
+decision_tier_2_generator_desc:0 "Planetary logistics project to replace the energy generation arrays with smaller and more efficient versions."
+decision_tier_2_generator_requirements:0 "$TRIGGER_FAIL$§RAt least 4 generator districts are required."
+
+decision_tier_3_generator:0 "Ascended Generator Districts"
+decision_tier_3_generator_desc:0 "Precursor technology is incorporated into the energy generation arrays to reach levels of efficiency that should normally be impossible."
+decision_tier_3_generator_requirements:0 "$TRIGGER_FAIL$§RAt least 8 generator districts are required."
+
+decision_tier_2_housing:0 "Compact Living Districts"
+decision_tier_2_housing_desc:0 "Planetary logistics project to eliminate any inefficiencies of space usage and build living spaces as densely as possible."
+decision_tier_2_housing_requirements:0 "$TRIGGER_FAIL$§RAt least 4 housing districts are required."
+
+decision_tier_3_housing:0 "Ascended Living Districts"
+decision_tier_3_housing_desc:0 "Precursor technology allows the creation of planet-scale devices that fold spacetime in ways that vastly extends the available space in a given volume."
+decision_tier_3_housing_requirements:0 "$TRIGGER_FAIL$§RAt least 8 housing districts are required."
+
+decision_tier_2_refinery:0 "Advanced Refinery Districts"
+decision_tier_2_refinery_desc:0 "Planetary project to upgrade refinery machines to versions that are significantly more efficient."
+decision_tier_2_refinery_requirements:0 "$TRIGGER_FAIL$§RAt least 4 refinery districts are required."
+
+decision_tier_2_bureaucratic:0 "Dense Bureaucratic Districts"
+decision_tier_2_bureaucratic_desc:0 "Planetary project to upgrade vast areas with bigger office complexes to ensure the smooth operation of the empire."
+decision_tier_2_bureaucratic_requirements:0 "$TRIGGER_FAIL$§RAt least 4 bureaucratic districts are required."
+
+decision_tier_2_core:0 "Dense Core Districts"
+decision_tier_2_core_desc:0 "Planetary project to upgrade vast areas with bigger operations complexes to ensure there are enough drones coordinating the empire."
+decision_tier_2_core_requirements:0 "$TRIGGER_FAIL$§RAt least 4 core districts are required."
+
+decision_tier_2_space_elevator:0 "Upgraded Space Elevator Districts"
+decision_tier_2_space_elevator_desc:0 "Planetary project to increase the loadbearing capacity and speed of the great elevators to be able to bring resources into space more efficiently."
+decision_tier_2_space_elevator_requirements:0 "$TRIGGER_FAIL$§RAt least 4 space elevator districts are required."
+
+decision_tier_2_research:0 "Upgraded Research Districts"
+decision_tier_2_research_desc:0 "Planetary project to increase the efficiency of science complexes to provide space for innovation."
+decision_tier_2_research_requirements:0 "$TRIGGER_FAIL$§RAt least 4 research districts are required."
+
+decision_tier_2_recreation:0 "Upgraded Recreation Districts"
+decision_tier_2_recreation_desc:0 "Planetary project to build additional sprawling recreational zones to provide an endless variety of activities."
+decision_tier_2_recreation_requirements:0 "$TRIGGER_FAIL$§RAt least 4 recreation districts are required."
+
+decision_tier_2_commerce:0 "Upgraded Commerce Districts"
+decision_tier_2_commerce_desc:0 "Planetary project to build additional business towers and complexes for trade and finances."
+decision_tier_2_commerce_requirements:0 "$TRIGGER_FAIL$§RAt least 4 commerce districts are required."
+
+# Technology
+tech_tier_2_farming:0 "Efficient Agriculture Districts"
+tech_tier_2_farming_desc:0 "Some would say nature is precious, others claim it's ours to exploit. Either way, efficiently using farmland is always desirable."
+
+tech_tier_3_farming:0 ""
+tech_tier_3_farming_desc:0 ""
+
+tech_tier_2_mining:0 ""
+tech_tier_2_mining_desc:0 ""
+
+tech_tier_3_mining:0 ""
+tech_tier_3_mining_desc:0 ""
+
+tech_tier_2_generator:0 ""
+tech_tier_2_generator_desc:0 ""
+
+tech_tier_3_generator:0 ""
+tech_tier_3_generator_desc:0 ""
+
+tech_tier_2_housing:0 ""
+tech_tier_2_housing_desc:0 ""
+
+tech_tier_3_housing:0 ""
+tech_tier_3_housing_desc:0 ""
+
