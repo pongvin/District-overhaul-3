@@ -5,16 +5,16 @@
 @tier_2_add_cost = 500
 
 # Upkeep cost
-@tier_1_base_upkeep = 3
-@tier_2_add_upkeep = 4
+@tier_1_base_upkeep = 2
+@tier_2_add_upkeep = 3
 
 # Housing count
 @tier_1_base_housing = 2
 @tier_2_add_housing = 3
 
 # Job count
-@tier_1_refiner_count = 1
-@tier_2_add_add_refiner_count = 1
+@tier_1_refiner_count = 1 # this is 3 in total
+@tier_2_add_add_refiner_count = 1 # this is 3 in total
 
 @tier_1_bureaucrat_count = 3
 @tier_2_add_bureaucrat_count = 3
@@ -40,11 +40,11 @@
 district_refinery = {
 	base_buildtime = 600
 	is_capped_by_modifier = no
-
+	prerequisites = {	"tech_tier_1_refinery_district"	}
 	potential = {
 		exists = owner
 		owner = { 
-            # has_technology = # TODO tech here
+            has_technology = tech_tier_1_refinery_district
         }
 		OR = {
 			uses_district_set = standard
@@ -161,12 +161,13 @@ district_refinery = {
 district_bureaucratic = {
 	base_buildtime = 600
 	is_capped_by_modifier = no
+	prerequisites = {	"tech_tier_1_bureaucratic_district"	}
 
 	potential = {
 		exists = owner
 		owner = { 
 			is_regular_empire = yes
-            # has_technology = # TODO tech here
+            has_technology = tech_tier_1_bureaucratic_district
         }
 		OR = {
 			uses_district_set = standard
@@ -247,12 +248,16 @@ district_bureaucratic = {
 district_core = {
 	base_buildtime = 600
 	is_capped_by_modifier = no
+	prerequisites = {	"tech_tier_1_core_district"	}
 
 	potential = {
 		exists = owner
 		owner = { 
-			is_hive_empire = yes
-            # has_technology = # TODO tech here
+			OR = {
+				is_hive_empire = yes
+				is_machine_empire = yes
+			}
+            has_technology = tech_tier_1_core_district
         }
 		OR = {
 			uses_district_set = standard
@@ -333,11 +338,12 @@ district_core = {
 district_space_elevator = {
 	base_buildtime = 600
 	is_capped_by_modifier = no
+	prerequisites = {	"tech_tier_1_space_elevator_district"	}
 
 	potential = {
 		exists = owner
 		owner = {
-            # has_technology = # TODO tech here
+            has_technology = tech_tier_1_space_elevator_district
         }
 		OR = {
 			uses_district_set = standard
@@ -446,11 +452,12 @@ district_space_elevator = {
 district_research = {
 	base_buildtime = 600
 	is_capped_by_modifier = no
+	prerequisites = {	"tech_tier_1_research_district"	}
 
 	potential = {
 		exists = owner
 		owner = {
-            # has_technology = # TODO tech here
+        	has_technology = tech_tier_1_research_district
         }
 		OR = {
 			uses_district_set = standard
@@ -563,11 +570,12 @@ district_research = {
 district_recreation = {
 	base_buildtime = 600
 	is_capped_by_modifier = no
+	prerequisites = {	"tech_tier_1_recreation_district"	}
 
 	potential = {
 		exists = owner
 		owner = {
-            # has_technology = # TODO tech here
+            has_technology = tech_tier_1_recreation_district
 			is_regular_empire = yes
         }
 		OR = {
@@ -645,11 +653,12 @@ district_recreation = {
 district_commerce = {
 	base_buildtime = 600
 	is_capped_by_modifier = no
+	prerequisites = {	"tech_tier_1_commerce_district"	}
 
 	potential = {
 		exists = owner
 		owner = {
-            # has_technology = # TODO tech here
+            has_technology = tech_tier_1_commerce_district
 			is_regular_empire = yes
         }
 		OR = {

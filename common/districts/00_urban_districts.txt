@@ -1,9 +1,9 @@
 # ----
-# Constants are cumulative, for example tier 2 build cost is 500 and tier 3 is 1000
+# Constants are cumulative, for example tier 2 build cost is 500 and tier 3 is 750
 # Build cost 
 @tier_1_base_cost = 240
 @tier_2_add_cost = 260
-@tier_3_add_cost = 500
+@tier_3_add_cost = 250
 
 # Upkeep cost
 @tier_1_base_upkeep = 1
@@ -12,8 +12,8 @@
 
 # Number of base housing and job count.
 @tier_1_base_housing = 6
-@tier_2_add_housing = 2
-@tier_3_add_housing = 3
+@tier_2_add_housing = 3
+@tier_3_add_housing = 4
 @machine_hive_world_housing_bonus = 5
 @tier_1_base_count = 1
 @tier_2_add_job_count = 1
@@ -295,7 +295,6 @@ district_city = {
 		}
 	}
 }
-
 district_hive = {
 	base_buildtime = 480
 	is_capped_by_modifier = no
@@ -535,7 +534,6 @@ district_hive = {
 		}
 	}
 }
-
 district_nexus = {
 	base_buildtime = 480
 	is_capped_by_modifier = no

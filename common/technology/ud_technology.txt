@@ -1,0 +1,553 @@
+# Generic districts
+tech_tier_2_farming = {
+	cost = @tier3cost1
+	area = society
+	tier = 3
+	category = { biology }
+	weight = @tier3weight2
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.01
+			OR = {
+				is_machine_empire = yes
+				is_lithoid_empire = yes
+			}
+			NOR = {
+				has_country_flag = non_lithoid_subspecies
+				has_valid_civic = civic_machine_servitor
+				has_valid_civic = civic_machine_assimilator
+				any_owned_planet = {
+					OR = {
+						num_districts = { type = district_farming value > 0 }
+						num_districts = { type = district_rw_farming value > 0 }
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 0.5
+			OR = {
+				is_machine_empire = yes
+				is_lithoid_empire = yes
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_biology"
+			}
+		}
+	}
+}
+tech_tier_3_farming = {
+	cost = @tier5cost1
+	area = society
+	tier = 5
+	category = { biology }
+	weight = @tier5weight2
+    is_rare = yes
+    prerequisites = { "tech_tier_2_farming" }
+
+	weight_modifier = {
+		modifier = {
+			factor = 0.01
+			OR = {
+				is_machine_empire = yes
+				is_lithoid_empire = yes
+			}
+			NOR = {
+				has_country_flag = non_lithoid_subspecies
+				has_valid_civic = civic_machine_servitor
+				has_valid_civic = civic_machine_assimilator
+				any_owned_planet = {
+					OR = {
+						num_districts = { type = district_farming value > 0 }
+						num_districts = { type = district_rw_farming value > 0 }
+					}
+				}
+			}
+		}
+		modifier = {
+			factor = 0.5
+			OR = {
+				is_machine_empire = yes
+				is_lithoid_empire = yes
+			}
+		}
+		modifier = {
+			factor = 1.25
+			has_ethic = ethic_pacifist
+		}
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_fanatic_pacifist
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_biology"
+			}
+		}
+	}
+}
+tech_tier_2_mining = {
+	cost = @tier3cost1
+	area = engineering
+	tier = 3
+	category = { industry }
+	weight = @tier3weight2
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+}
+tech_tier_3_mining = {
+	cost = @tier5cost1
+	area = engineering
+	tier = 5
+	category = { industry }
+	weight = @tier5weight2
+    is_rare = yes
+    prerequisites = { "tech_tier_2_mining" }
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+}
+tech_tier_2_generator = {
+	cost = @tier3cost1
+	area = physics
+	tier = 3
+	category = { field_manipulation }
+	weight = @tier3weight2
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_prosperity_adopt
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_field_manipulation"
+			}
+		}
+	}
+}
+tech_tier_3_generator = {
+	cost = @tier5cost1
+	area = physics
+	tier = 5
+	category = { field_manipulation }
+	weight = @tier5weight2
+    is_rare = yes
+    prerequisites = { "tech_tier_2_generator" }
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_prosperity_adopt
+		}
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_field_manipulation"
+			}
+		}
+	}
+}
+tech_tier_2_housing = {
+	cost = @tier3cost1
+	area = engineering
+	tier = 3
+	category = { industry }
+	weight = @tier3weight2
+
+	weight_modifier = {
+		factor = 1.5
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+}
+tech_tier_3_housing = {
+	cost = @tier5cost1
+	area = engineering
+	tier = 5
+	category = { industry }
+	weight = @tier5weight2
+    is_rare = yes
+    prerequisites = { "tech_tier_2_housing" }
+
+	weight_modifier = {
+		factor = 1.5
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+}
+
+# Special districts
+tech_tier_1_refinery_district = {
+	cost = @tier3cost1
+	area = engineering
+	tier = 3
+	category = { industry }
+	weight = @tier3weight2
+
+	weight_modifier = {
+		factor = 1.5
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+}
+tech_tier_2_refinery_district = {
+	cost = @tier5cost1
+	area = engineering
+	tier = 5
+	category = { industry }
+	weight = @tier5weight2
+    is_rare = yes
+    prerequisites = { "tech_tier_1_refinery_district" }
+
+	weight_modifier = {
+		factor = 1.5
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_industry"
+			}
+		}
+	}
+}
+tech_tier_1_bureaucratic_district = {
+	cost = @tier3cost1
+	area = society
+	tier = 3
+	category = { new_worlds }
+	weight = @tier3weight2
+
+	potential = {
+		NOR = {
+			is_hive_empire = yes
+			is_machine_empire = yes
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_new_worlds"
+			}
+		}
+	}
+}
+tech_tier_2_bureaucratic_district = {
+	cost = @tier5cost1
+	area = society
+	tier = 5
+	category = { new_worlds }
+	weight = @tier5weight2
+    is_rare = yes
+    prerequisites = { "tech_tier_1_bureaucratic_district" }
+
+	potential = {
+		NOR = {
+			is_hive_empire = yes
+			is_machine_empire = yes
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_new_worlds"
+			}
+		}
+	}
+}
+tech_tier_1_core_district = {
+	cost = @tier3cost1
+	area = society
+	tier = 3
+	category = { new_worlds }
+	weight = @tier3weight2
+
+	potential = {
+		OR = {
+			is_hive_empire = yes
+			is_machine_empire = yes
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_new_worlds
+			}
+		}
+	}
+}
+tech_tier_2_core_district = {
+	cost = @tier5cost1
+	area = society
+	tier = 5
+	category = { new_worlds }
+	weight = @tier5weight2
+    is_rare = yes
+    prerequisites = { "tech_tier_1_core_district" }
+
+	potential = {
+		OR = {
+			is_hive_empire = yes
+			is_machine_empire = yes
+		}
+	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_new_worlds"
+			}
+		}
+	}
+}
+tech_tier_1_space_elevator_district = {
+	cost = @tier3cost1
+	area = engineering
+	tier = 3
+	category = { voidcraft }
+	weight = @tier3weight2
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
+tech_tier_2_space_elevator_district = {
+	cost = @tier5cost1
+	area = engineering
+	tier = 5
+	category = { voidcraft }
+	weight = @tier5weight2
+    is_rare = yes
+    prerequisites = { "tech_tier_1_space_elevator_district" }
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = engineering
+				has_trait = "leader_trait_expertise_voidcraft"
+			}
+		}
+	}
+}
+tech_tier_1_research_district = {
+	cost = @tier3cost1
+	area = physics
+	tier = 3
+	category = { computing }
+	weight = @tier3weight2
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_computing"
+			}
+		}
+	}
+}
+tech_tier_2_research_district = {
+	cost = @tier5cost1
+	area = physics
+	tier = 5
+	category = { computing }
+	weight = @tier5weight2
+    is_rare = yes
+    prerequisites = { "tech_tier_1_research_district" }
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = physics
+				has_trait = "leader_trait_expertise_computing"
+			}
+		}
+	}
+}
+tech_tier_1_recreation_district = {
+	cost = @tier3cost1
+	area = society
+	tier = 3
+	category = { statecraft }
+	weight = @tier3weight2
+
+	potential = {   is_regular_empire = yes	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+}
+tech_tier_2_recreation_district = {
+	cost = @tier5cost1
+	area = society
+	tier = 5
+	category = { statecraft }
+	weight = @tier5weight2
+    is_rare = yes
+    prerequisites = { "tech_tier_1_recreation_district" }
+
+    potential = {   is_regular_empire = yes	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+}
+tech_tier_1_recreation_district = {
+	cost = @tier3cost1
+	area = society
+	tier = 3
+	category = { statecraft }
+	weight = @tier3weight2
+
+	potential = {   is_regular_empire = yes	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+}
+tech_tier_2_recreation_district = {
+	cost = @tier5cost1
+	area = society
+	tier = 5
+	category = { statecraft }
+	weight = @tier5weight2
+    is_rare = yes
+    prerequisites = { "tech_tier_1_recreation_district" }
+
+    potential = {   is_regular_empire = yes	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+}
+tech_tier_1_commerce_district = {
+	cost = @tier3cost1
+	area = society
+	tier = 3
+	category = { statecraft }
+	weight = @tier3weight2
+
+	potential = {   is_regular_empire = yes	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+}
+tech_tier_2_commerce_district = {
+	cost = @tier5cost1
+	area = society
+	tier = 5
+	category = { statecraft }
+	weight = @tier5weight2
+    is_rare = yes
+    prerequisites = { "tech_tier_1_commerce_district" }
+
+    potential = {   is_regular_empire = yes	}
+
+	weight_modifier = {
+		modifier = {
+			factor = 1.25
+			research_leader = {
+				area = society
+				has_trait = "leader_trait_expertise_statecraft"
+			}
+		}
+	}
+}
