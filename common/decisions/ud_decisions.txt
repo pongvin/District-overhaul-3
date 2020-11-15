@@ -1,9 +1,10 @@
 @base_influence_cost = 100
-@base_mineral_cost = 500
+@base_mineral_cost = 1000
 @base_tier_3_minor_artifact_cost = 15
-@add_mineral_cost = 500
+@add_mineral_cost = 1000 #Added for each 2 existing districts upon enactment, up to 4 times
 @base_enactment_time = 720
 
+# Base districts
 decision_tier_2_farming = {
 	owned_planets_only = yes
 	prerequisites = {	"tech_tier_2_farming"	}
@@ -11,6 +12,10 @@ decision_tier_2_farming = {
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
+		}
+		OR = {
+			num_districts = { type = district_farming value > 0 }
+			num_districts = { type = district_farming_uncapped value > 0 }
 		}
 		NOT = { has_planet_flag = tier_2_farming }
 	}
@@ -81,6 +86,10 @@ decision_tier_3_farming = {
 	potential = {
 		NOT = { has_planet_flag = tier_3_farming }
 		has_planet_flag = tier_2_farming
+		OR = {
+			num_districts = { type = district_farming value > 0 }
+			num_districts = { type = district_farming_uncapped value > 0 }
+		}
 	}
 	allow = {
 		custom_tooltip = {
@@ -154,6 +163,10 @@ decision_tier_2_mining = {
 			uses_district_set = hive_world
 			uses_district_set = machine_world
 		}
+		OR = {
+			num_districts = { type = district_mining value > 0 }
+			num_districts = { type = district_mining_uncapped value > 0 }
+		}
 		NOT = { has_planet_flag = tier_2_mining }
 	}
 	allow = {
@@ -223,6 +236,10 @@ decision_tier_3_mining = {
 			uses_district_set = standard
 			uses_district_set = hive_world
 			uses_district_set = machine_world
+		}
+		OR = {
+			num_districts = { type = district_mining value > 0 }
+			num_districts = { type = district_mining_uncapped value > 0 }
 		}
 		NOT = { has_planet_flag = tier_3_mining }
 		has_planet_flag = tier_2_mining
@@ -296,6 +313,10 @@ decision_tier_2_generator = {
 			uses_district_set = hive_world
 			uses_district_set = machine_world
 		}
+		OR = {
+			num_districts = { type = district_generator value > 0 }
+			num_districts = { type = district_generator_uncapped value > 0 }
+		}
 		NOT = { has_planet_flag = tier_2_generator}
 	}
 	allow = {
@@ -365,6 +386,10 @@ decision_tier_3_generator = {
 			uses_district_set = standard
 			uses_district_set = hive_world
 			uses_district_set = machine_world
+		}
+		OR = {
+			num_districts = { type = district_generator value > 0 }
+			num_districts = { type = district_generator_uncapped value > 0 }
 		}
 		NOT = { has_planet_flag = tier_3_generator }
 		has_planet_flag = tier_2_generator
@@ -438,15 +463,20 @@ decision_tier_2_housing = {
 			uses_district_set = hive_world
 			uses_district_set = machine_world
 		}
+		OR = {
+				num_districts = { type = district_city value > 0 }
+				num_districts = { type = district_hive value > 0 }
+				num_districts = { type = district_nexus value > 0 }
+		}
 		NOT = { has_planet_flag = tier_2_housing }
 	}
 	allow = {
 		custom_tooltip = {
 			fail_text = decision_tier_2_housing_requirements
 			OR = {
-					num_districts = { type = district_city value > 3 }
-					num_districts = { type = district_hive value > 3 }
-					num_districts = { type = district_nexus value > 3 }
+					num_districts = { type = district_city value > 0 }
+					num_districts = { type = district_hive value > 0 }
+					num_districts = { type = district_nexus value > 0 }
 			}
 		}
 	}
@@ -513,6 +543,11 @@ decision_tier_3_housing = {
 			uses_district_set = hive_world
 			uses_district_set = machine_world
 		}
+		OR = {
+				num_districts = { type = district_city value > 0 }
+				num_districts = { type = district_hive value > 0 }
+				num_districts = { type = district_nexus value > 0 }
+		}
 		NOT = { has_planet_flag = tier_3_housing }
 		has_planet_flag = tier_2_housing
 	}
@@ -520,9 +555,9 @@ decision_tier_3_housing = {
 		custom_tooltip = {
 			fail_text = decision_tier_3_housing_requirements
 			OR = {
-					num_districts = { type = district_city value > 7 }
-					num_districts = { type = district_hive value > 7 }
-					num_districts = { type = district_nexus value > 7 }
+					num_districts = { type = district_city value > 0 }
+					num_districts = { type = district_hive value > 0 }
+					num_districts = { type = district_nexus value > 0 }
 			}
 		}
 	}
@@ -581,6 +616,8 @@ decision_tier_3_housing = {
 		}
 	}
 }
+
+# Custom districts
 decision_tier_2_refinery = {
 	owned_planets_only = yes
 	prerequisites = {	"tech_tier_2_refinery_district"	}
@@ -590,6 +627,7 @@ decision_tier_2_refinery = {
 			uses_district_set = hive_world
 			uses_district_set = machine_world
 		}
+		num_districts = { type = district_refinery value > 0 }
 		NOT = { has_planet_flag = tier_2_refinery }
 	}
 	allow = {
@@ -633,11 +671,9 @@ decision_tier_2_refinery = {
 decision_tier_2_bureaucratic = {
 	owned_planets_only = yes
 	prerequisites = {	"tech_tier_2_bureaucratic_district"	}
-
 	potential = {
 		exists = owner
 		owner = { 
-            # has_technology = # TODO tech here
 			is_regular_empire = yes
         }
 		OR = {
@@ -645,16 +681,15 @@ decision_tier_2_bureaucratic = {
 			uses_district_set = hive_world
 			uses_district_set = machine_world
 		}
+		num_districts = { type = district_bureaucratic value > 0 }
 		NOT = { has_planet_flag = tier_2_bureaucratic }
 	}
-
 	allow = {
 		custom_tooltip = {
 			fail_text = decision_tier_2_bureaucratic_requirements
 			num_districts = { type = district_bureaucratic value > 3 }
 		}
 	}
-
 	resources = {
 		category = decisions
 		cost = {
@@ -690,7 +725,6 @@ decision_tier_2_bureaucratic = {
 decision_tier_2_core = {
 	owned_planets_only = yes
 	prerequisites = {	"tech_tier_2_core_district"	}
-
 	potential = {
 		exists = owner
 		owner = { 
@@ -698,13 +732,13 @@ decision_tier_2_core = {
 				is_hive_empire = yes
 				is_machine_empire = yes
 			}
-            # has_technology = # TODO tech here
         }
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
 			uses_district_set = machine_world
 		}
+		num_districts = { type = district_core value > 0 }
 		NOT = { has_planet_flag = tier_2_core }
 	}
 
@@ -752,15 +786,12 @@ decision_tier_2_space_elevator = {
 	prerequisites = {	"tech_tier_2_space_elevator_district"	}
 
 	potential = {
-		exists = owner
-		owner = { 
-            # has_technology = # TODO tech here
-        }
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
 			uses_district_set = machine_world
 		}
+		num_districts = { type = district_space_elevator value > 0 }
 		NOT = { has_planet_flag = tier_2_space_elevator }
 	}
 
@@ -808,15 +839,12 @@ decision_tier_2_research = {
 	prerequisites = {	"tech_tier_2_research_district"	}
 
 	potential = {
-		exists = owner
-		owner = { 
-            # has_technology = # TODO tech here
-        }
 		OR = {
 			uses_district_set = standard
 			uses_district_set = hive_world
 			uses_district_set = machine_world
 		}
+		num_districts = { type = district_research value > 0 }
 		NOT = { has_planet_flag = tier_2_research }
 	}
 	allow = {
@@ -864,7 +892,6 @@ decision_tier_2_recreation = {
 	potential = {
 		exists = owner
 		owner = { 
-            # has_technology = # TODO tech here
 			is_regular_empire = yes
         }
 		OR = {
@@ -872,6 +899,7 @@ decision_tier_2_recreation = {
 			uses_district_set = hive_world
 			uses_district_set = machine_world
 		}
+		num_districts = { type = district_recreation value > 0 }
 		NOT = { has_planet_flag = tier_2_recreation }
 	}
 
@@ -921,7 +949,6 @@ decision_tier_2_commerce = {
 	potential = {
 		exists = owner
 		owner = { 
-            # has_technology = # TODO tech here
 			is_regular_empire = yes
         }
 		OR = {
@@ -929,6 +956,7 @@ decision_tier_2_commerce = {
 			uses_district_set = hive_world
 			uses_district_set = machine_world
 		}
+		num_districts = { type = district_commerce value > 0 }
 		NOT = { has_planet_flag = tier_2_commerce }
 	}
 	allow = {

@@ -8,33 +8,48 @@
 @tier_1_base_upkeep = 2
 @tier_2_add_upkeep = 3
 
-# Housing count
-@tier_1_base_housing = 2
-@tier_2_add_housing = 3
+# Tiered jobs and housing
+@tier_1_refiner_count = 1 #Applies for each refiner type, so 3x job count in total
+@tier_1_refiner_housing = 3
+@tier_2_add_refiner_count = 1 #Applies for each refiner type, so 3x job count in total
+@tier_2_add_refiner_housing = 3
 
-# Job count
-@tier_1_refiner_count = 1 # this is 3 in total
-@tier_2_add_add_refiner_count = 1 # this is 3 in total
-
-@tier_1_bureaucrat_count = 3
-@tier_2_add_bureaucrat_count = 3
+@tier_1_bureaucrat_count = 2
+@tier_1_bureaucrat_housing = 2
+@tier_2_add_bureaucrat_count = 2
 @tier_2_add_administrator_count = 1
+@tier_2_bureaucrat_housing = 3
 
-@tier_1_space_engineer_count = 3
-@tier_2_add_space_engineer_count = 3
+@tier_1_coordinator_count = 2
+@tier_1_core_housing = 2
+@tier_2_add_coordinator_count = 2
+@tier_2_add_synapse_count = 1
+@tier_2_core_housing = 3
+
+@tier_1_space_engineer_count = 2
+@tier_1_space_elevator_housing = 2
+@tier_2_add_space_engineer_count = 2
+@tier_2_space_elevator_housing = 2
 
 @tier_1_researcher_count = 2
-@tier_2_add_researcher_count = 2
-@tier_2_add_head_researcher_count = 1
+@tier_1_researcher_housing = 2
+@tier_2_add_researcher_count = 1 #This counts double for machine and hive empires
+@tier_2_add_head_researcher_count = 1 #Not for hive and machine empires
+@tier_2_researcher_housing = 2
 
-@tier_1_entertainer_count = 2
-@tier_1_culture_worker_count = 2
-@tier_2_add_entertainer_count = 2
-@tier_2_add_culture_worker_count = 2
+@tier_1_entertainer_count = 1
+@tier_1_culture_worker_count = 1
+@tier_1_recreation_housing = 2
+@tier_2_add_entertainer_count = 1
+@tier_2_add_culture_worker_count = 1
+@tier_2_recreation_housing = 2
 
-@tier_1_clerk_count = 3
-@tier_2_add_clerk_count = 3
+@tier_1_clerk_count = 1
+@tier_1_add_merchant_count = 1
+@tier_1_commerce_housing = 2
+@tier_2_add_clerk_count = 1
 @tier_2_add_merchant_count = 1
+@tier_2_commerce_housing = 2
 # ----
 
 district_refinery = {
@@ -90,14 +105,14 @@ district_refinery = {
 
 	# Tiered housing
 	planet_modifier = {
-		planet_housing_add = @tier_1_base_housing
+		planet_housing_add = @tier_1_refiner_housing
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			planet = { has_planet_flag = tier_2_refinery }
 		}
-		planet_housing_add = @tier_2_add_housing
+		planet_housing_add = @tier_2_add_refiner_housing
 	}
 	# Tiered housing end
 
@@ -124,16 +139,16 @@ district_refinery = {
 			planet = { has_planet_flag = tier_2_refinery }
 		}
 		modifier = {
-			job_chemist_add = @tier_2_add_add_refiner_count
-            job_translucer_add = @tier_2_add_add_refiner_count
-            job_gas_refiner_add = @tier_2_add_add_refiner_count
+			job_chemist_add = @tier_2_add_refiner_count
+            job_translucer_add = @tier_2_add_refiner_count
+            job_gas_refiner_add = @tier_2_add_refiner_count
 		}
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			owner = {
-				is_hive_empire = yes
+				is_gestalt = yes
 			}
 		}
 		modifier = {
@@ -146,14 +161,14 @@ district_refinery = {
 		potential = {
 			exists = owner
 			owner = {
-				is_hive_empire = yes
+				is_gestalt = yes
 			}
 			planet = { has_planet_flag = tier_2_refinery }
 		}
 		modifier = {
-			job_chemist_drone_add = @tier_2_add_add_refiner_count
-            job_translucer_drone_add = @tier_2_add_add_refiner_count
-            job_gas_refiner_drone_add = @tier_2_add_add_refiner_count
+			job_chemist_drone_add = @tier_2_add_refiner_count
+            job_translucer_drone_add = @tier_2_add_refiner_count
+            job_gas_refiner_drone_add = @tier_2_add_refiner_count
 		}
 	}
 	# Tiered jobs end
@@ -213,14 +228,14 @@ district_bureaucratic = {
 
 	# Tiered housing
 	planet_modifier = {
-		planet_housing_add = @tier_1_base_housing
+		planet_housing_add = @tier_1_bureaucrat_housing
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			planet = { has_planet_flag = tier_2_bureaucratic }
 		}
-		planet_housing_add = @tier_2_add_housing
+		planet_housing_add = @tier_2_bureaucrat_housing
 	}
 	# Tiered housing end
 
@@ -303,14 +318,14 @@ district_core = {
 
 	# Tiered housing
 	planet_modifier = {
-		planet_housing_add = @tier_1_base_housing
+		planet_housing_add = @tier_1_core_housing
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			planet = { has_planet_flag = tier_2_core }
 		}
-		planet_housing_add = @tier_2_add_housing
+		planet_housing_add = @tier_2_core_housing
 	}
 	# Tiered housing end
 
@@ -320,7 +335,7 @@ district_core = {
 			exists = owner
 		}
 		modifier = {
-			job_coordinator_add = @tier_1_bureaucrat_count
+			job_coordinator_add = @tier_1_coordinator_count
 		}
 	}
 	triggered_planet_modifier = {
@@ -329,8 +344,8 @@ district_core = {
 			planet = { has_planet_flag = tier_2_core }
 		}
 		modifier = {
-			job_coordinator_add = @tier_2_add_bureaucrat_count
-			job_synapse_drone_add = @tier_2_add_administrator_count
+			job_coordinator_add = @tier_2_add_coordinator_count
+			job_synapse_drone_add = @tier_2_add_synapse_count
 		}
 	}
 	# Tiered jobs end
@@ -389,14 +404,14 @@ district_space_elevator = {
 
 	# Tiered housing
 	planet_modifier = {
-		planet_housing_add = @tier_1_base_housing
+		planet_housing_add = @tier_1_space_elevator_housing
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			planet = { has_planet_flag = tier_2_space_elevator }
 		}
-		planet_housing_add = @tier_2_add_housing
+		planet_housing_add = @tier_2_space_elevator_housing
 	}
 	# Tiered housing end
 
@@ -428,7 +443,7 @@ district_space_elevator = {
 		potential = {
 			exists = owner
 			owner = {
-				is_hive_empire = yes
+				is_gestalt = yes
 			}
 		}
 		modifier = {
@@ -439,7 +454,7 @@ district_space_elevator = {
 		potential = {
 			exists = owner
 			owner = {
-				is_hive_empire = yes
+				is_gestalt = yes
 			}
 			planet = { has_planet_flag = tier_2_space_elevator }
 		}
@@ -506,14 +521,14 @@ district_research = {
 		potential = {
 			exists = owner
 		}
-		planet_housing_add = @tier_1_base_housing
+		planet_housing_add = @tier_1_researcher_housing
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			planet = { has_planet_flag = tier_2_research }
 		}
-		planet_housing_add = @tier_2_add_housing
+		planet_housing_add = @tier_2_researcher_housing
 	}
 	# Tiered housing end
 
@@ -546,11 +561,11 @@ district_research = {
 		potential = {
 			exists = owner
 			owner = {
-				is_hive_empire = yes
+				is_gestalt = yes
 			}
 		}
 		modifier = {
-			job_brain_drone_add = @tier_2_add_researcher_count
+			job_brain_drone_add = @tier_1_researcher_count
 		}
 	}
 	triggered_planet_modifier = {
@@ -562,6 +577,7 @@ district_research = {
 			planet = { has_planet_flag = tier_2_research }
 		}
 		modifier = {
+			job_brain_drone_add = @tier_2_add_researcher_count
 			job_brain_drone_add = @tier_2_add_researcher_count
 		}
 	}
@@ -625,14 +641,14 @@ district_recreation = {
 		potential = {
 			exists = owner
 		}
-		planet_housing_add = @tier_1_base_housing
+		planet_housing_add = @tier_1_recreation_housing
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			planet = { has_planet_flag = tier_2_recreation }
 		}
-		planet_housing_add = @tier_2_add_housing
+		planet_housing_add = @tier_2_recreation_housing
 	}
 	# Tiered housing end
 
@@ -708,20 +724,21 @@ district_commerce = {
 		potential = {
 			exists = owner
 		}
-		planet_housing_add = @tier_1_base_housing
+		planet_housing_add = @tier_1_commerce_housing
 	}
 	triggered_planet_modifier = {
 		potential = {
 			exists = owner
 			planet = { has_planet_flag = tier_2_commerce }
 		}
-		planet_housing_add = @tier_2_add_housing
+		planet_housing_add = @tier_2_commerce_housing
 	}
 	# Tiered housing end
 
 	# Tiered jobs
 	planet_modifier = {
 		job_clerk_add = @tier_1_clerk_count
+		job_merchant_add = @tier_1_add_merchant_count
 	}
 	triggered_planet_modifier = {
 		potential = {

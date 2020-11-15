@@ -18,11 +18,11 @@ district_refinery_desc:0 "Endless factories and chemical labs produce a wide ran
 
 district_bureaucratic:0 "Bureaucratic District"
 district_bureaucratic_plural:0 "Bureaucratic Districts"
-district_bureaucratic_desc:0 "Dedicated sector to accomodate the vast number of administrative workers needed to run the empire."
+district_bureaucratic_desc:0 "Dedicated sector to accomodate the vast number of administrative workers needed to run an empire."
 
 district_core:0 "Core District"
 district_core_plural:0 "Core Districts"
-district_core_desc:0 "Dedicated sector to accomodate the vast number of administrative drones needed to run the empire."
+district_core_desc:0 "Dedicated sector to accomodate the vast number of administrative drones needed to run an empire."
 
 district_space_elevator:0 "Space Elevator District"
 district_space_elevator_plural:0 "Space Elevator Districts"
@@ -72,7 +72,7 @@ decision_tier_2_housing_desc:0 "Planetary logistics project to eliminate any ine
 decision_tier_2_housing_requirements:0 "$TRIGGER_FAIL$§RAt least 4 housing districts are required."
 
 decision_tier_3_housing:0 "Ascended Living Districts"
-decision_tier_3_housing_desc:0 "Precursor technology allows the creation of planet-scale devices that fold spacetime in ways that vastly extends the available space in a given volume."
+decision_tier_3_housing_desc:0 "Precursor technology allows the creation of planet-scale devices that fold spacetime in ways that vastly extend the available space in a given volume."
 decision_tier_3_housing_requirements:0 "$TRIGGER_FAIL$§RAt least 8 housing districts are required."
 
 decision_tier_2_refinery:0 "Advanced Refinery Districts"
@@ -87,44 +87,85 @@ decision_tier_2_core:0 "Dense Core Districts"
 decision_tier_2_core_desc:0 "Planetary project to upgrade vast areas with bigger operations complexes to ensure there are enough drones coordinating the empire."
 decision_tier_2_core_requirements:0 "$TRIGGER_FAIL$§RAt least 4 core districts are required."
 
-decision_tier_2_space_elevator:0 "Upgraded Space Elevator Districts"
+decision_tier_2_space_elevator:0 "Advanced Space Elevator Districts"
 decision_tier_2_space_elevator_desc:0 "Planetary project to increase the loadbearing capacity and speed of the great elevators to be able to bring resources into space more efficiently."
 decision_tier_2_space_elevator_requirements:0 "$TRIGGER_FAIL$§RAt least 4 space elevator districts are required."
 
-decision_tier_2_research:0 "Upgraded Research Districts"
+decision_tier_2_research:0 "Advanced Research Districts"
 decision_tier_2_research_desc:0 "Planetary project to increase the efficiency of science complexes to provide space for innovation."
 decision_tier_2_research_requirements:0 "$TRIGGER_FAIL$§RAt least 4 research districts are required."
 
-decision_tier_2_recreation:0 "Upgraded Recreation Districts"
+decision_tier_2_recreation:0 "Dense Recreation Districts"
 decision_tier_2_recreation_desc:0 "Planetary project to build additional sprawling recreational zones to provide an endless variety of activities."
 decision_tier_2_recreation_requirements:0 "$TRIGGER_FAIL$§RAt least 4 recreation districts are required."
 
-decision_tier_2_commerce:0 "Upgraded Commerce Districts"
+decision_tier_2_commerce:0 "Dense Commerce Districts"
 decision_tier_2_commerce_desc:0 "Planetary project to build additional business towers and complexes for trade and finances."
 decision_tier_2_commerce_requirements:0 "$TRIGGER_FAIL$§RAt least 4 commerce districts are required."
 
-# Technology
+# Technologies
 tech_tier_2_farming:0 "Efficient Agriculture Districts"
 tech_tier_2_farming_desc:0 "Some would say nature is precious, others claim it's ours to exploit. Either way, efficiently using farmland is always desirable."
 
-tech_tier_3_farming:0 ""
-tech_tier_3_farming_desc:0 ""
+tech_tier_3_farming:0 "Ascended Agriculture Districts"
+tech_tier_3_farming_desc:0 "Advances in our understanding of precursor technology paves the way to planet-wide improvements to agriculture."
 
-tech_tier_2_mining:0 ""
-tech_tier_2_mining_desc:0 ""
+tech_tier_2_mining:0 "Efficient Mining Districts"
+tech_tier_2_mining_desc:0 "Purifying minerals has always been a challenge on an industrial scale. By lessening the amount of space the machinery takes, we can increase the efficiency of the extraction itself."
 
-tech_tier_3_mining:0 ""
-tech_tier_3_mining_desc:0 ""
+tech_tier_3_mining:0 "Ascended Mining Districts"
+tech_tier_3_mining_desc:0 "Advances in our understanding of precursor technology allows us to further miniaturize the machinery needed for mineral extraction."
 
-tech_tier_2_generator:0 ""
-tech_tier_2_generator_desc:0 ""
+tech_tier_2_generator:0 "Efficient Generator Districts"
+tech_tier_2_generator_desc:0 "Attempting to study the workings of the cosmos often leads to dead ends and disappointment. Other times it leads to revolutions."
 
-tech_tier_3_generator:0 ""
-tech_tier_3_generator_desc:0 ""
+tech_tier_3_generator:0 "Ascended Generator Districts"
+tech_tier_3_generator_desc:0 "Advances in our understanding of precursor technology enables unparallelled insight into the very underpinnings of reality itself."
 
-tech_tier_2_housing:0 ""
-tech_tier_2_housing_desc:0 ""
+tech_tier_2_housing:0 "Efficient Housing Districts"
+tech_tier_2_housing_desc:0 "Whatever the goal, comfortably cramming more beings in less space is almost always something worth exploring."
 
-tech_tier_3_housing:0 ""
-tech_tier_3_housing_desc:0 ""
+tech_tier_3_housing:0 "Ascended Housing Districts"
+tech_tier_3_housing_desc:0 "Study of precursor technology to fold spacetime in ways that vastly extends the available space in a given volume."
 
+tech_tier_1_refinery_district:0 "Refinery Districts"
+tech_tier_1_refinery_district_desc:0 "Mass deployment of ecologically impactful exotic material refiners has historically proven to be a disastrous idea. With improvements on filtering and waste management protocols, pollution outputs can be pushed to acceptable levels, which in turn allows the construction of dedicated refiner districts without causing complete ecological collapse."
+
+tech_tier_2_refinery_district:0 "Advanced Refinery Districts"
+tech_tier_2_refinery_district_desc:0 "Advances in exotic materials manufacturing allows smaller machinery to produce more raw materials."
+
+tech_tier_1_bureaucratic_district:0 "Bureaucratic Districts"
+tech_tier_1_bureaucratic_district_desc:0 "It is apparent that multistellar empires require an unimaginable amount of administrative tasks to function properly. Therefore we must prepare the infrastructure to accomodate the workers who will be tasked to manage it."
+
+tech_tier_2_bureaucratic_district:0 "Dense Bureaucratic Districts"
+tech_tier_2_bureaucratic_district_desc:0 "Cramming more office workers into tighter space does have its drawbacks on worker morale if not done properly. However, increasing benefits for said workers counteract most of the negatives."
+
+tech_tier_1_space_elevator_district:0 "Space Elevator Districts"
+tech_tier_1_space_elevator_district_desc:0 "Lifting resources from the ground to low orbit in a cost-efficient manner allows fielding a lot more spacecraft without putting much of a strain on the empire budget. Space elevators and their staff can be the answer to this problem."
+
+tech_tier_2_space_elevator_district:0 "Advanced Space Elevator Districts"
+tech_tier_2_space_elevator_district_desc:0 "Using stronger materials to construct the space elevators can reduce their overall size while increasing their efficiency."
+
+tech_tier_1_research_district:0 "Research Districts"
+tech_tier_1_research_district_desc:0 "To achieve technological supremacy, dedicating areas of the planet to innovation is critical."
+
+tech_tier_2_research_district:0 "Advanced Research Districts"
+tech_tier_2_research_district_desc:0 "Analyzing current research processes with advanced algorithms could yield results which we can use to optimize output."
+
+tech_tier_1_recreation_district:0 "Recreation Districts"
+tech_tier_1_recreation_district_desc:0 "Bread and circuses - an old saying whose origin had long been forgotten. The idea behind it, however, had not."
+
+tech_tier_2_recreation_district:0 "Dense Recreation Districts"
+tech_tier_2_recreation_district_desc:0 "As our population grows, so does their hunger for entertainment. It is time we improve these aspects of our society."
+
+tech_tier_1_commerce_district:0 "Commerce Districts"
+tech_tier_1_commerce_district_desc:0 "Trade is the backbone of prosperity. It is imperative the put down the infrastructure to"
+
+tech_tier_2_commerce_district:0 "Dense Commerce Districts"
+tech_tier_2_commerce_district_desc:0 "Societal advances in policies and workflows allow more efficient trade."
+
+tech_tier_1_core_district:0 "Core Districts"
+tech_tier_1_core_district_desc:0 "The need to coordinate the ever-growing empire naturally leads to dedicating sectors of the planet as homes for drones to do so."
+
+tech_tier_2_core_district:0 "Dense Core Districts"
+tech_tier_2_core_district_desc:0 "Improvements to spatial efficiency allows housing more drones to coordinate our empire."
