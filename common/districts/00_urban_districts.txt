@@ -13,11 +13,11 @@
 # Number of base housing and job count.
 @tier_1_base_housing = 6
 @tier_2_add_housing = 4
-@tier_3_add_housing = 7
+@tier_3_add_housing = 4
 @machine_hive_world_housing_bonus = 5
 @tier_1_base_count = 1
 @tier_2_add_job_count = 1
-@tier_3_add_job_count = 2
+@tier_3_add_job_count = 1
 @machine_hive_world_job_bonus = 2
 # ----
 
